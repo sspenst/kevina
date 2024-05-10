@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.animateSSPath {
+  stroke-dasharray: 168.26;
+  stroke-dashoffset: 168.26;
+  animation: dash 4s ease forwards infinite;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 336.52;
+  }
+  30% {
+    stroke-dashoffset: 336.52;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.gradient-border {
+  background-image: linear-gradient(to right, transparent, rgb(100 100 100) 20%, rgb(100 100 100) 80%, transparent);
+}
+
+.dark .gradient-border {
+  background-image: linear-gradient(to right, transparent, rgb(150 150 150) 20%, rgb(150 150 150) 80%, transparent);
+}
+
+.background-radial {
+  background-image: radial-gradient(at 50% 40%, rgba(255, 255, 255, 0.2), rgb(255, 255, 255));
+}
+
+.dark .background-radial {
+  background-image: radial-gradient(at 50% 30%, rgba(0, 0, 0, 0.2), rgb(0, 0, 0));
+}
+
+.background-bottom {
+  background-image: linear-gradient(to bottom, transparent, white);
+}
+
+.dark .background-bottom {
+  background-image: linear-gradient(to bottom, transparent, rgb(23 23 23));
+}
