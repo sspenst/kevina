@@ -13,11 +13,11 @@ class MyDocument extends Document {
       <Html lang='en'>
         <Head>
           <link rel='manifest' href='/manifest.json' />
-          <link rel='apple-touch-icon' type='image/png' href='/ss-192-maskable.png' />
+          <link rel='apple-touch-icon' type='image/png' href='/duck.png' />
           <link rel='icon' href='/duck.png' />
-          <meta name='theme-color' content='rgb(23 23 23)' />
+          <meta name='theme-color' content='#60a5fa' />
         </Head>
-        <body className='bg-white dark:bg-neutral-900 text-black dark:text-white'>
+        <body className='bg-blue-400 text-black'>
           <Main />
           <NextScript />
         </body>
