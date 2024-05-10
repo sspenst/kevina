@@ -90,14 +90,26 @@ export default function Index() {
       }
     };
 
-    const handleTouchStart = (event: TouchEvent) => {
-      const touch = event.touches[0];
-      const { clientX, clientY } = touch;
-      const deltaX = clientX - x;
-      const deltaY = clientY - y;
+    const handleTouchPos = (xTouch: number, yTouch: number) => {
+      const deltaX = xTouch - x;
+      const deltaY = yTouch - y;
 
       setVelocityX(deltaX / Math.max(Math.abs(deltaX), Math.abs(deltaY)) * speed);
       setVelocityY(deltaY / Math.max(Math.abs(deltaX), Math.abs(deltaY)) * speed);
+    };
+
+    const handleTouchStart = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      const { clientX, clientY } = touch;
+
+      handleTouchPos(clientX, clientY);
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      const { clientX, clientY } = touch;
+
+      handleTouchPos(clientX, clientY);
     };
 
     const handleTouchEnd = () => {
@@ -108,6 +120,7 @@ export default function Index() {
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
     window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove);
     window.addEventListener('touchend', handleTouchEnd);
 
     const updatePosition = () => {
@@ -121,6 +134,7 @@ export default function Index() {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
       window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
       clearInterval(intervalId);
     };
@@ -129,12 +143,14 @@ export default function Index() {
   // useEffect to check if you are outside the screen, if yes you loseZ
   useEffect(() => {
     if (x < -size || x > window.innerWidth || y < -size) {
+      // TODO: auto-restart
       alert('You drowned! Do you want to try again?');
       setX(0);
       setY(0);
       setVelocityX(0);
       setVelocityY(0);
-    } else if (y > window.innerHeight - size) {
+      setTwo(false);
+    } else if (y > window.innerHeight - 3 * size / 2) {
       router.push('/win');
     }
   }, [router, size, x, y]);
@@ -177,6 +193,20 @@ export default function Index() {
     context.fillRect(5 * window.innerWidth / 8, gridSize * 11, window.innerWidth / 4, gridSize * 2);
   }, []);
 
+  useEffect(() => {
+    document.querySelectorAll('img').forEach((img) => {
+      img.addEventListener('contextmenu', e => e.preventDefault());
+      img.addEventListener('touchstart', e => e.preventDefault());
+    });
+
+    return () => {
+      document.querySelectorAll('img').forEach((img) => {
+        img.removeEventListener('contextmenu', e => e.preventDefault());
+        img.removeEventListener('touchstart', e => e.preventDefault());
+      });
+    };
+  }, []);
+
   const left = typeof window === 'undefined' ? 0 : two ? x + size : 3 * window.innerWidth / 4 - size / 2;
 
   return (
@@ -186,7 +216,7 @@ export default function Index() {
         <meta name='description' content='Duck Game' />
       </Head>
       <div className='fixed inset-0 overflow-hidden bg-white select-none' id='game'>
-        <canvas ref={canvasRef} className='absolute h-full w-full' />
+        <canvas ref={canvasRef} className='absolute h-full w-full select-none' />
         <div style={{
           left: `${x}px`,
           top: `${y}px`,

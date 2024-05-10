@@ -38,6 +38,12 @@ export default function Index() {
         <meta name='description' content='Duck Game' />
       </Head>
       <div className='fixed inset-0 overflow-hidden bg-white select-none' id='game'>
+        {/* you win! text above the images */}
+        <div style={{
+          top: `${height / 2 - size / 2 - 80}px`,
+        }} className='absolute select-none w-full text-center font-bold text-6xl'>
+          <p>You win!</p>
+          </div>
         <div style={{
           left: `${width / 2 - size}px`,
           top: `${height / 2 - size / 2}px`,
