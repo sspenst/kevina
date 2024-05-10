@@ -1,13 +1,51 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function Index() {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [velocityX, setVelocityX] = useState(0);
   const [velocityY, setVelocityY] = useState(0);
-  const speed = 10;
+  const [two, setTwo] = useState(false);
+
+  const [size, setSize] = useState(0);
+  const speed = size / 10;
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (x > 3 * window.innerWidth / 4 - 3 * size / 2 && x < 3 * window.innerWidth / 4 + size / 2 && y > size * 10.5 && y < size * 12.5) {
+      setTwo(true);
+    }
+  }, [x, y, size]);
+
+  useEffect(() => {
+    const el = document.getElementById('game');
+
+    if (!el) {
+      return;
+    }
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      // https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry/contentBoxSize
+      const gridHeight = entries[0].contentBoxSize[0].blockSize;
+      // const gridWidth = entries[0].contentBoxSize[0].inlineSize;
+
+      setSize(gridHeight / 20);
+    });
+
+    resizeObserver.observe(el);
+
+    return () => {
+      resizeObserver.unobserve(el);
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -86,34 +124,88 @@ export default function Index() {
       window.removeEventListener('touchend', handleTouchEnd);
       clearInterval(intervalId);
     };
-  }, [velocityX, velocityY, x, y]);
+  }, [speed, velocityX, velocityY, x, y]);
 
   // useEffect to check if you are outside the screen, if yes you loseZ
   useEffect(() => {
-    if (x < -64 || x > window.innerWidth + 64 || y < -64 || y > window.innerHeight + 64) {
+    if (x < -size || x > window.innerWidth || y < -size) {
       alert('You drowned! Do you want to try again?');
       setX(0);
       setY(0);
       setVelocityX(0);
       setVelocityY(0);
+    } else if (y > window.innerHeight - size) {
+      router.push('/win');
     }
-  }, [x, y]);
+  }, [router, size, x, y]);
 
-  return (<>
-    <Head>
-      <title>Duck Game</title>
-      <meta name='description' content='Duck Game' />
-    </Head>
-    <div className='fixed inset-0 overflow-hidden bg-blue-400'>
-      <div style={{
-        left: `${x}px`,
-        top: `${y}px`,
-      }} className='absolute select-none'>
-        <Image alt='Duck Game' height={64} src='/duck.png' width={64} style={{
-          minHeight: '64px',
-          minWidth: '64px',
-        }} />
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+
+    if (!canvas) {
+      return;
+    }
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const context = canvas.getContext('2d');
+
+    if (!context) {
+      return;
+    }
+
+    context.imageSmoothingEnabled = false;
+    context.fillStyle = 'rgb(96 165 250)';
+    context.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+    const gridSize = window.innerHeight / 20;
+
+    context.fillStyle = '#7ea358';
+    // add a safe area at the bottom
+    context.fillRect(0, window.innerHeight - gridSize, window.innerWidth, gridSize);
+    // same at the top
+    context.fillRect(0, 0, window.innerWidth, gridSize);
+
+    context.fillStyle = '#a3a3a3';
+    context.fillRect(window.innerWidth / 2, gridSize * 4, window.innerWidth / 2, gridSize * 2);
+
+    context.fillRect(window.innerWidth / 8, gridSize * 10, window.innerWidth / 4, gridSize * 2);
+
+    context.fillRect(5 * window.innerWidth / 8, gridSize * 11, window.innerWidth / 4, gridSize * 2);
+  }, []);
+
+  const left = typeof window === 'undefined' ? 0 : two ? x + size : 3 * window.innerWidth / 4 - size / 2;
+
+  return (
+    <>
+      <Head>
+        <title>Duck Game</title>
+        <meta name='description' content='Duck Game' />
+      </Head>
+      <div className='fixed inset-0 overflow-hidden bg-white select-none' id='game'>
+        <canvas ref={canvasRef} className='absolute h-full w-full' />
+        <div style={{
+          left: `${x}px`,
+          top: `${y}px`,
+        }} className='absolute select-none'>
+          <Image alt='Duck Game' height={size} src='/duck.png' width={size} style={{
+            minHeight: size,
+            minWidth: size,
+          }} />
+        </div>
+        <div style={{
+          left: `${left}px`,
+          top: `${two ? y : size * 11.5}px`,
+        }} className='absolute select-none'>
+          <Image alt='Duck Game' height={size} src='/duck.png' width={size} style={{
+            minHeight: size,
+            minWidth: size,
+          }} />
+        </div>
       </div>
-    </div>
-  </>);
+    </>
+  );
 }

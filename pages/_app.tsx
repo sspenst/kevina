@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className={inter.className}>
       <ThemeProvider attribute='class' enableSystem>
-        <main className='pt-24'>
+        <main className='pt-24 select-none'>
           <Component {...pageProps} />
         </main>
       </ThemeProvider>
