@@ -14,3 +14,16 @@
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+
+.flash {
+  animation-name: flash;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 0; }
+  5% { opacity: 1; }
+}

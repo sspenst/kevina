@@ -1,7 +1,9 @@
+import classNames from 'classnames';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
+import useInterval from '../components/useInterval';
 
 export default function Index() {
   const [x, setX] = useState(0);
@@ -12,6 +14,9 @@ export default function Index() {
 
   const [size, setSize] = useState(0);
   const speed = size / 10;
+
+  const maxHealth = 80;
+  const [health, setHealth] = useState(maxHealth);
 
   const router = useRouter();
 
@@ -123,37 +128,74 @@ export default function Index() {
     window.addEventListener('touchmove', handleTouchMove);
     window.addEventListener('touchend', handleTouchEnd);
 
-    const updatePosition = () => {
-      setX((prevX) => prevX + velocityX);
-      setY((prevY) => prevY + velocityY);
-    };
-
-    const intervalId = setInterval(updatePosition, 16); // Update roughly every 16ms (60fps)
-
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
-      clearInterval(intervalId);
     };
-  }, [speed, velocityX, velocityY, x, y]);
+  }, [size, speed, two, velocityX, velocityY, x, y]);
+
+  useInterval(() => {
+    setX((prevX) => prevX + velocityX);
+    setY((prevY) => prevY + velocityY);
+
+    // check if you are in a safe zone
+    const gridSize = window.innerHeight / 20;
+
+    // grass
+    if (y < gridSize || y > window.innerHeight - gridSize) {
+      setHealth(maxHealth);
+
+      return;
+    }
+
+    if (y > gridSize * 3 && y < gridSize * 6 && x > window.innerWidth / 2 - size) {
+      setHealth(maxHealth);
+
+      return;
+    }
+
+    if (y > gridSize * 9 && y < gridSize * 12 && x > window.innerWidth / 8 - size && x < 3 * window.innerWidth / 8) {
+      setHealth(maxHealth);
+
+      return;
+    }
+
+    if (y > gridSize * 10 && y < gridSize * 13 && x > 5 * window.innerWidth / 8 - size && x < 7 * window.innerWidth / 8) {
+      setHealth(maxHealth);
+
+      return;
+    }
+
+    setHealth((prevHealth) => prevHealth - (two ? 1 : 2));
+  }, 16);
 
   // useEffect to check if you are outside the screen, if yes you loseZ
   useEffect(() => {
-    if (x < -size || x > window.innerWidth || y < -size) {
+    if (x < -size || x > window.innerWidth || y < -size || health < 0) {
       // TODO: auto-restart
-      alert('You drowned! Do you want to try again?');
       setX(0);
       setY(0);
       setVelocityX(0);
       setVelocityY(0);
       setTwo(false);
+      setHealth(maxHealth);
+
+      // add flash class to death id
+      const death = document.getElementById('death');
+
+      if (death) {
+        death.classList.add('flash');
+        setTimeout(() => {
+          death.classList.remove('flash');
+        }, 1000);
+      }
     } else if (y > window.innerHeight - 3 * size / 2) {
       router.push('/win');
     }
-  }, [router, size, x, y]);
+  }, [health, router, size, x, y]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -174,12 +216,19 @@ export default function Index() {
     }
 
     context.imageSmoothingEnabled = false;
-    context.fillStyle = 'rgb(96 165 250)';
+    // context.fillStyle = 'rgb(96 165 250)';
+    // context.fillRect(0, 0, window.innerWidth, window.innerHeight);
+    // make a light blue to dark blue gradient that fills the entire context
+    const gradient = context.createLinearGradient(0, 0, 0, window.innerHeight);
+
+    gradient.addColorStop(0, 'rgb(96 165 250)');
+    gradient.addColorStop(1, 'rgb(0 0 128)');
+    context.fillStyle = gradient;
     context.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
     const gridSize = window.innerHeight / 20;
 
-    context.fillStyle = '#7ea358';
+    context.fillStyle = '#86cf3e';
     // add a safe area at the bottom
     context.fillRect(0, window.innerHeight - gridSize, window.innerWidth, gridSize);
     // same at the top
@@ -217,10 +266,12 @@ export default function Index() {
       </Head>
       <div className='fixed inset-0 overflow-hidden bg-white select-none' id='game'>
         <canvas ref={canvasRef} className='absolute h-full w-full select-none' />
+        <div className='absolute w-full h-full bg-red-500 opacity-0' id='death' />
         <div style={{
           left: `${x}px`,
+          opacity: health / maxHealth,
           top: `${y}px`,
-        }} className='absolute select-none'>
+        }} className={classNames('absolute select-none', { '-scale-x-100': velocityX >= 0 })}>
           <Image alt='Duck Game' height={size} src='/duck.png' width={size} style={{
             minHeight: size,
             minWidth: size,
@@ -228,8 +279,9 @@ export default function Index() {
         </div>
         <div style={{
           left: `${left}px`,
+          opacity: two ? health / maxHealth : undefined,
           top: `${two ? y : size * 11.5}px`,
-        }} className='absolute select-none'>
+        }} className={classNames('absolute select-none', { '-scale-x-100': velocityX >= 0 })}>
           <Image alt='Duck Game' height={size} src='/duck.png' width={size} style={{
             minHeight: size,
             minWidth: size,
