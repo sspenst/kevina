@@ -43,7 +43,7 @@ export default function Index() {
           top: `${height / 2 - size / 2 - 80}px`,
         }} className='absolute select-none w-full text-center font-bold text-6xl'>
           <p>You win!</p>
-          </div>
+        </div>
         <div style={{
           left: `${width / 2 - size}px`,
           top: `${height / 2 - size / 2}px`,

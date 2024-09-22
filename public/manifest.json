@@ -4,25 +4,25 @@
   "description": "Duck Game",
   "icons": [
     {
-      "src": "duck.png",
+      "src": "ks.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "duck.png",
+      "src": "ks.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "duck.png",
+      "src": "ks.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "duck.png",
+      "src": "ks.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
