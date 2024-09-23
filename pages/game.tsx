@@ -263,6 +263,7 @@ export default function Index() {
       <Head>
         <title>Duck Game</title>
         <meta name='description' content='Duck Game' />
+        <meta name='theme-color' content='#60a5fa' />
       </Head>
       <div className='pt-24 select-none touch-none overscroll-none'>
         <div className='fixed inset-0 overflow-hidden bg-white select-none' id='game'>
