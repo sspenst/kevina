@@ -17,9 +17,7 @@ class MyDocument extends Document {
           <link rel='icon' href='/ks.png' />
           <meta name='theme-color' content='#60a5fa' />
         </Head>
-        <body className='text-black' style={{
-          backgroundColor: '#71bd8c',
-        }}>
+        <body className='bg-white text-black'>
           <Main />
           <NextScript />
         </body>

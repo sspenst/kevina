@@ -1,13 +1,15 @@
 import classNames from 'classnames';
-import { Dancing_Script } from 'next/font/google';
+import { Libre_Baskerville } from 'next/font/google';
 import Head from 'next/head';
 import React from 'react';
 
-const dancingScript = Dancing_Script({
+const libre = Libre_Baskerville({
   display: 'swap',
   fallback: ['system-ui', 'arial'],
   preload: true,
+  style: ['normal', 'italic'],
   subsets: ['latin'],
+  weight: '400',
 });
 
 export default function Index() {
@@ -18,7 +20,7 @@ export default function Index() {
         <meta name='description' content='Kevina & Spencer Spenst' />
       </Head>
       <div className='m-16'>
-        <div className={classNames('flex flex-col gap-8 text-center text-5xl', dancingScript.className)}>
+        <div className={classNames('flex flex-col gap-8 text-center text-4xl italic', libre.className)}>
           <span>Kevina Grace Takenaka</span>
           <span>&</span>
           <span>Spencer Christian Spenst</span>
