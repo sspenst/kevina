@@ -30,7 +30,8 @@ export default function Index() {
           <span>November 15th, 2024</span>
           <span>4:00 pm in the afternoon</span>
           <br />
-          <a className='hover:text-green-600 underline w-fit' href='https://maps.app.goo.gl/gSqQzDLs1HB7dX6C6' target='_blank' rel='noreferrer'>Fort Langley Community Hall</a>
+          <span>Fort Langley Community Hall</span>
+          <a className='hover:text-green-600 underline w-fit text-xl' href='https://maps.app.goo.gl/gSqQzDLs1HB7dX6C6' target='_blank' rel='noreferrer'>9167 Glover Rd, Langley Twp, BC V1M 2R9</a>
           <br />
           <a className='hover:text-green-600 underline w-fit' href='https://docs.google.com/forms/d/e/1FAIpQLSfngKKVGGtjyomtK5lgZ-L7e8LF5WIhF258w7OGS_c3f-r6QQ/viewform' target='_blank' rel='noreferrer'>RSVP</a>
         </div>
