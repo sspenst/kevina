@@ -49,7 +49,12 @@ export default function Index() {
             </div>
           </a>
           <br />
-          <a className='hover:text-green-600 underline w-fit' href='https://docs.google.com/forms/d/e/1FAIpQLSfngKKVGGtjyomtK5lgZ-L7e8LF5WIhF258w7OGS_c3f-r6QQ/viewform' target='_blank' rel='noreferrer'>RSVP</a>
+          <span>Please let us know if you can make it with our <a className='hover:text-green-600 underline w-fit' href='https://docs.google.com/forms/d/e/1FAIpQLSfngKKVGGtjyomtK5lgZ-L7e8LF5WIhF258w7OGS_c3f-r6QQ/viewform' target='_blank' rel='noreferrer'>RSVP form</a>.</span>
+          <br />
+          <span>If you would like to give a gift, feel free to check out our <a className='hover:text-green-600 underline w-fit' href='https://www.myregistry.com/giftlist/kevina-spencer' target='_blank' rel='noreferrer'>registry</a> for ideas!</span>
+          <span>For cash gifts, you&apos;re welcome to contribute in person or via e-Transfer to spencerspenst@gmail.com.</span>
+          <br />
+          <span>We hope to see you there!</span>
         </div>
       </div>
     </>
