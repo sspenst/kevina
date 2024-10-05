@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 export default function Index() {
@@ -47,8 +48,10 @@ export default function Index() {
           </div>
           <br />
           <a className='border-[2px] not-italic border-green-200 px-8 py-2 hover:bg-green-200 bg-green-100 transition w-fit rounded-lg' href='https://www.myregistry.com/giftlist/kevina-spencer' target='_blank' rel='noreferrer'>Registry</a>
-          {/* <br />
-          <span>If you would like to give a gift, feel free to check out our <a className='hover:text-green-600 underline w-fit' href='https://www.myregistry.com/giftlist/kevina-spencer' target='_blank' rel='noreferrer'>registry</a> for ideas.</span> */}
+          <span className='text-4xl'>~</span>
+          <Link className='border-[2px] not-italic border-blue-200 px-8 py-2 hover:bg-blue-200 bg-blue-100 transition w-fit rounded-lg' href='/photos'>Photos</Link>
+          <br />
+          <span>Semi-formal to formal dress.</span>
           <br />
           <span>We hope to see you there!</span>
         </div>
