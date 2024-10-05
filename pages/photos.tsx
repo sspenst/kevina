@@ -23,6 +23,8 @@ export default function Index() {
           <Image alt='logo' src='/photos/Kevina & Spencer-46.jpg' width={2000} height={2000} className='max-w-full' />
           <Image alt='logo' src='/photos/Kevina & Spencer-61.jpg' width={2000} height={2000} className='max-w-full w-[512px]' />
           <Image alt='logo' src='/photos/Kevina & Spencer-89.jpg' width={2000} height={2000} className='max-w-full w-[512px]' />
+          <Image alt='logo' src='/photos/Kevina & Spencer-84.jpg' width={2000} height={2000} className='max-w-full w-[512px]' />
+          <Image alt='logo' src='/photos/Kevina & Spencer-70.jpg' width={2000} height={2000} className='max-w-full w-[512px]' />
         </div>
       </div>
     </>
