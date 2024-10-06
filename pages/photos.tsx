@@ -9,7 +9,7 @@ export default function Index() {
         <title>Kevina & Spencer Spenst</title>
         <meta name='description' content='Kevina & Spencer Spenst' />
       </Head>
-      <div className='relative flex flex-col items-center gap-12 m-16 z-10'>
+      <div className='relative flex flex-col items-center gap-12 md:m-16 m-12 z-10'>
         <div className='flex flex-wrap justify-center items-center gap-12 text-center text-3xl italic text-balance max-w-full'>
           <Image alt='logo' src='/photos/Kevina & Spencer-78.jpg' width={2000} height={2000} className='max-w-full' />
           <Image alt='logo' src='/photos/Kevina & Spencer-9.jpg' width={2000} height={2000} className='max-w-full w-[512px]' />
