@@ -54,6 +54,13 @@ export default function Index() {
           <span>Semi-formal to formal dress.</span>
           <br />
           <span>We hope to see you there!</span>
+          <br />
+          <Link href='/game' className='-scale-x-100 opacity-50 hover:opacity-100 transition'>
+            <Image alt='Duck Game' height={48} src='/duck.png' width={48} style={{
+              minHeight: 48,
+              minWidth: 48,
+            }} />
+          </Link>
         </div>
       </div>
     </>
