@@ -47,8 +47,6 @@ export default function Index() {
             </a>
           </div>
           <br />
-          <a className='border-[2px] not-italic border-green-200 px-8 py-2 hover:bg-green-200 bg-green-100 transition w-fit rounded-lg' href='https://www.myregistry.com/giftlist/kevina-spencer' target='_blank' rel='noreferrer'>Registry</a>
-          <span className='text-4xl'>~</span>
           <Link className='border-[2px] not-italic border-blue-200 px-8 py-2 hover:bg-blue-200 bg-blue-100 transition w-fit rounded-lg' href='/photos'>Photos</Link>
           <br />
           <span>Semi-formal to formal dress.</span>
