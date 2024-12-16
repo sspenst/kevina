@@ -52,6 +52,7 @@ export default [...compat.extends(
 
     rules: {
         "@typescript-eslint/no-unused-vars": "warn",
+        // https://eslint.style/guide/migration
         "@typescript-eslint/type-annotation-spacing": "warn",
         "arrow-spacing": "warn",
         "comma-spacing": "warn",
