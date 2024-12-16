@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
 
 export default function Index() {
@@ -19,17 +18,8 @@ export default function Index() {
             <span>Spencer Christian Spenst</span>
           </div>
           <br />
-          <a className='border-[2px] not-italic border-orange-200 px-8 py-2 hover:bg-orange-200 bg-orange-100 transition w-fit rounded-lg' href='https://docs.google.com/forms/d/e/1FAIpQLSfngKKVGGtjyomtK5lgZ-L7e8LF5WIhF258w7OGS_c3f-r6QQ/viewform' target='_blank' rel='noreferrer'>RSVP</a>
-          <br />
           <div className='flex flex-col items-center gap-8 text-center text-4xl'>
             <span>Friday, November 15th, 2024</span>
-            <a className='hover:text-green-600 underline w-fit text-xl flex gap-3 items-center' href='Kevina%20%26%20Spencer%27s%20Wedding.ics'>
-              <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='size-6'>
-                <path strokeLinecap='round' strokeLinejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z' />
-              </svg>
-              <span className='hidden sm:block'>4:00 pm in the afternoon</span>
-              <span className='sm:hidden'>4:00 pm</span>
-            </a>
           </div>
           <br />
           <div className='flex flex-col items-center gap-8 text-center text-4xl'>
@@ -46,21 +36,6 @@ export default function Index() {
               </div>
             </a>
           </div>
-          <br />
-          <a className='border-[2px] not-italic border-green-200 px-8 py-2 hover:bg-green-200 bg-green-100 transition w-fit rounded-lg' href='https://www.myregistry.com/giftlist/kevina-spencer' target='_blank' rel='noreferrer'>Registry</a>
-          <span className='text-4xl'>~</span>
-          <Link className='border-[2px] not-italic border-blue-200 px-8 py-2 hover:bg-blue-200 bg-blue-100 transition w-fit rounded-lg' href='/photos'>Photos</Link>
-          <br />
-          <span>Semi-formal to formal dress.</span>
-          <br />
-          <span>We hope to see you there!</span>
-          <br />
-          <Link href='/game' className='-scale-x-100 opacity-50 hover:opacity-100 transition'>
-            <Image alt='Duck Game' height={48} src='/duck.png' width={48} style={{
-              minHeight: 48,
-              minWidth: 48,
-            }} />
-          </Link>
         </div>
       </div>
     </>
