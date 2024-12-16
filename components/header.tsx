@@ -18,13 +18,18 @@ export default function Header() {
           <div className='flex gap-2'>
             <Image alt='Kevina & Spencer Spenst' height={32} src='/ks.png' width={32} />
           </div>
-          <span className='sm:block hidden text-xl'>
+          <span className='text-xl'>
             Kevina & Spencer
           </span>
         </Link>
         <div className='flex gap-6 items-center pr-2'>
-          <a className=' hover:text-neutral-500 text-black' href='https://docs.google.com/forms/d/e/1FAIpQLSfngKKVGGtjyomtK5lgZ-L7e8LF5WIhF258w7OGS_c3f-r6QQ/viewform' target='_blank' rel='noreferrer'>RSVP</a>
           <Link aria-label='Photos' href='/photos' className='hover:text-neutral-500 text-black'>Photos</Link>
+          <Link href='/game' className='-scale-x-100 opacity-50 hover:opacity-100 transition'>
+            <Image alt='Duck Game' height={24} src='/duck.png' width={24} style={{
+              minHeight: 24,
+              minWidth: 24,
+            }} />
+          </Link>
         </div>
       </div>
     </header>
