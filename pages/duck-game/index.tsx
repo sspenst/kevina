@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
-import useInterval from '../components/useInterval';
+import useInterval from '../../components/useInterval';
 
 export default function Index() {
   const [x, setX] = useState(0);
@@ -195,7 +195,7 @@ export default function Index() {
         }, 1000);
       }
     } else if (y > window.innerHeight - 3 * size / 2) {
-      router.push('/win');
+      router.push('/duck-game/win');
     }
   }, [health, router, size, x, y]);
 

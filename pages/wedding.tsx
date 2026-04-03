@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
+import WeddingHeader from '../components/weddingHeader';
 
 export default function Index() {
   return (
@@ -9,6 +10,7 @@ export default function Index() {
         <title>Kevina & Spencer Spenst</title>
         <meta name='description' content='Kevina & Spencer Spenst' />
       </Head>
+      <WeddingHeader />
       <Image alt='invitation' src='/invitation.jpeg' width={3912} height={3437} className='fixed w-full h-full top-0 opacity-50 object-cover z-0' />
       <div className='relative flex flex-col items-center gap-12 m-16 z-10'>
         <div className='flex flex-col items-center gap-12 text-center text-3xl italic text-balance'>
