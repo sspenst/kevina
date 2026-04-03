@@ -40,7 +40,7 @@ export default function HomePage() {
       </Head>
 
       <div className={`${inter.className} bg-[#FDFFFE] text-black flex items-center justify-center px-6`}>
-        <div className='w-full max-w-2xl flex flex-col items-center gap-16 py-12 md:py-20'>
+        <div className='w-full max-w-2xl flex flex-col items-center gap-20 py-12 md:py-20'>
           <div className='relative w-60 max-w-[700px] h-auto'>
             <Image
               key={`draw-${animationToken}`}
@@ -49,7 +49,7 @@ export default function HomePage() {
               width={240}
               height={240}
               className='w-60 max-w-[700px] h-auto kevina-draw-layer'
-              style={{ animationDelay: `${DRAW_TOTAL_MS}ms` }}
+              style={{ animationDelay: `${DRAW_TOTAL_MS}ms`, height: 'auto' }}
             />
             <Image
               key={`final-${animationToken}`}
@@ -58,11 +58,11 @@ export default function HomePage() {
               width={240}
               height={240}
               className='w-60 max-w-[700px] h-auto absolute inset-0 kevina-final-layer'
-              style={{ animationDelay: `${DRAW_TOTAL_MS}ms` }}
+              style={{ animationDelay: `${DRAW_TOTAL_MS}ms`, height: 'auto' }}
             />
           </div>
 
-          <nav aria-label='Site links' className='w-full max-w-md'>
+          <nav aria-label='Site links' className='w-full max-w-sm'>
 
             <ul className='w-full'>
               {/* <li className='border-b border-black/5 last:border-b-0'>
@@ -76,7 +76,7 @@ export default function HomePage() {
               {links.map((link, index) => (
                 <li
                   key={link.href}
-                  className='border-b border-black/5 first:border-t kevina-link-item'
+                  className='kevina-link-item'
                   style={{
                     animationDelay: `${DRAW_TOTAL_MS + (index + 1) * LIST_ITEM_FADE_MS}ms`,
                     animationDuration: `${LIST_ITEM_FADE_MS}ms`,
@@ -84,7 +84,7 @@ export default function HomePage() {
                 >
                   <Link
                     href={link.href}
-                    className='grid w-full grid-cols-[1fr_auto] items-center gap-4 px-4 py-3 text-lg transition hover:bg-black/5'
+                    className='kevina-link-row grid w-full grid-cols-[1fr_auto] items-center gap-4 px-4 py-3 text-lg transition'
                   >
                     <span className='text-sm font-medium'>{link.label}</span>
                     <span className='text-xs text-black/50 tabular-nums'>{link.date}</span>

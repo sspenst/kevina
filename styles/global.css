@@ -52,8 +52,40 @@
 .kevina-link-item {
   opacity: 0;
   animation-name: kevinaLinkFadeIn;
-  animation-timing-function: ease;
+  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
+}
+
+.kevina-link-row {
+  position: relative;
+}
+
+.kevina-link-row::after {
+  content: '';
+  position: absolute;
+  right: -0.5rem;
+  top: 50%;
+  width: 0.875rem;
+  height: 0.875rem;
+  background-color: rgb(0 0 0);
+  opacity: 0;
+  transform: translate(-0.5rem, -50%);
+  transition: opacity 150ms ease, transform 150ms ease;
+  pointer-events: none;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.kevina-link-row:hover::after,
+.kevina-link-row:focus-visible::after {
+  opacity: 1;
+  transform: translate(0, -50%);
 }
 
 @keyframes kevinaLinkFadeIn {
