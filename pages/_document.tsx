@@ -17,7 +17,9 @@ class MyDocument extends Document {
           <link rel='icon' href='/ks.png' />
           <meta name='theme-color' content='#ffffff' />
         </Head>
-        <body className='bg-white text-black'>
+        <body className='bg-white text-black antialiased' style={{
+          textRendering: 'optimizeLegibility',
+        }}>
           <Main />
           <NextScript />
         </body>
