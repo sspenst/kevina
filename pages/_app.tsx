@@ -5,12 +5,10 @@ import React from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className='font-libre'>
-      <ThemeProvider attribute='class' enableSystem>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider attribute='class' enableSystem>
+      <main>
+        <Component {...pageProps} />
+      </main>
+    </ThemeProvider>
   );
 }

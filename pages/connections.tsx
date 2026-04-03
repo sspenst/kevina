@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
+import { geistSans } from '../lib/fonts';
 
 interface Word {
   id: number;
@@ -137,10 +138,7 @@ export default function ConnectionsPage() {
         <meta name='description' content='A special birthday Connections game just for you!' />
       </Head>
 
-      <div
-        className='min-h-screen flex items-center justify-center bg-white text-black'
-        style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}
-      >
+      <div className={`${geistSans.className} min-h-screen flex items-center justify-center bg-white text-black`}>
         <div className='max-w-[600px] w-full p-2'>
           <h1 className='text-4xl font-semibold text-center mb-1'>Connections</h1>
           <h2 className='text-2xl text-center mb-8'>May 11, 2025</h2>

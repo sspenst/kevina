@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import { libreBaskerville } from '../../lib/fonts';
 
 export default function Index() {
   const [height, setHeight] = useState(0);
@@ -37,7 +38,7 @@ export default function Index() {
         <title>Duck Game</title>
         <meta name='description' content='Duck Game' />
       </Head>
-      <div className='fixed inset-0 overflow-hidden bg-white select-none' id='game'>
+      <div className={`${libreBaskerville.className} fixed inset-0 overflow-hidden bg-white select-none`} id='game'>
         {/* you win! text above the images */}
         <div style={{
           top: `${height / 2 - size / 2 - 80}px`,

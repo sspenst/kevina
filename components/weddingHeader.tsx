@@ -3,13 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { libreBaskerville } from '../lib/fonts';
 
 export default function WeddingHeader() {
   const router = useRouter();
 
   return (
-    <header className={classNames('p-4 sticky top-0 z-20 flex justify-center', { 'bg-white': router.pathname === '/photos' })}>
-      <div className='flex items-center justify-between px-4 py-3 rounded-full border border-white backdrop-blur-lg max-w-screen-lg w-full'>
+    <header className={classNames(libreBaskerville.className, 'p-4 sticky top-0 z-20 flex justify-center', { 'bg-white': router.pathname === '/photos' })}>
+      <div className='flex items-center justify-between px-4 py-3 rounded-full border border-white backdrop-blur-lg max-w-5xl w-full'>
         <Link aria-label='Home' href='/wedding' className='flex items-center gap-6 font-medium hover:opacity-50 transition pl-2'>
           <div className='flex gap-2'>
             <Image alt='Kevina & Spencer Spenst' height={32} src='/ks.png' width={32} />
