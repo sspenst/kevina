@@ -4,6 +4,10 @@ import Link from 'next/link';
 import React from 'react';
 import { inter } from '../lib/fonts';
 
+function createAnimationToken() {
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
 const links = [
   { href: '/connections', label: 'Connections', date: '2025-05-11' },
   { href: '/wedding', label: 'Wedding', date: '2024-11-15' },
@@ -12,6 +16,21 @@ const links = [
 
 export default function HomePage() {
   const DRAW_TOTAL_MS = 750;
+  const LIST_ITEM_FADE_MS = 220;
+  const [animationToken, setAnimationToken] = React.useState('initial');
+
+  React.useEffect(() => {
+    const resetAnimation = () => {
+      setAnimationToken(createAnimationToken());
+    };
+
+    resetAnimation();
+    window.addEventListener('pageshow', resetAnimation);
+
+    return () => {
+      window.removeEventListener('pageshow', resetAnimation);
+    };
+  }, []);
 
   return (
     <>
@@ -20,11 +39,12 @@ export default function HomePage() {
         <meta name='description' content='Kevina homepage' />
       </Head>
 
-      <div className={`${inter.className} min-h-screen bg-[#FDFFFE] text-black flex items-center justify-center px-6`}>
-        <div className='w-full max-w-2xl flex flex-col items-center gap-16 pt-6 pb-12'>
+      <div className={`${inter.className} bg-[#FDFFFE] text-black flex items-center justify-center px-6`}>
+        <div className='w-full max-w-2xl flex flex-col items-center gap-16 py-12 md:py-20'>
           <div className='relative w-60 max-w-[700px] h-auto'>
             <Image
-              src='/kevina-cursive-draw.svg'
+              key={`draw-${animationToken}`}
+              src={`/kevina-cursive-draw.svg?v=${animationToken}`}
               alt='Kevina'
               width={240}
               height={240}
@@ -32,7 +52,8 @@ export default function HomePage() {
               style={{ animationDelay: `${DRAW_TOTAL_MS}ms` }}
             />
             <Image
-              src='/kevina-cursive.svg'
+              key={`final-${animationToken}`}
+              src={`/kevina-cursive.svg?v=${animationToken}`}
               alt='Kevina'
               width={240}
               height={240}
@@ -43,7 +64,7 @@ export default function HomePage() {
 
           <nav aria-label='Site links' className='w-full max-w-md'>
 
-            <ul className='w-full border-y border-black/5'>
+            <ul className='w-full'>
               {/* <li className='border-b border-black/5 last:border-b-0'>
                 <div
                   className='grid w-full grid-cols-[1fr_auto] items-center gap-4 px-4 py-3 text-lg transition hover:bg-black/5 cursor-default'
@@ -52,14 +73,21 @@ export default function HomePage() {
                   <span className='text-xs text-black/70 tabular-nums'>2026-05-11</span>
                 </div>
               </li> */}
-              {links.map((link) => (
-                <li key={link.href} className='border-b border-black/5 last:border-b-0'>
+              {links.map((link, index) => (
+                <li
+                  key={link.href}
+                  className='border-b border-black/5 first:border-t kevina-link-item'
+                  style={{
+                    animationDelay: `${DRAW_TOTAL_MS + (index + 1) * LIST_ITEM_FADE_MS}ms`,
+                    animationDuration: `${LIST_ITEM_FADE_MS}ms`,
+                  }}
+                >
                   <Link
                     href={link.href}
                     className='grid w-full grid-cols-[1fr_auto] items-center gap-4 px-4 py-3 text-lg transition hover:bg-black/5'
                   >
                     <span className='text-sm font-medium'>{link.label}</span>
-                    <span className='text-xs text-black/70 tabular-nums'>{link.date}</span>
+                    <span className='text-xs text-black/50 tabular-nums'>{link.date}</span>
                   </Link>
                 </li>
               ))}

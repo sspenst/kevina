@@ -49,6 +49,17 @@
   opacity: 1;
 }
 
+.kevina-link-item {
+  opacity: 0;
+  animation-name: kevinaLinkFadeIn;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes kevinaLinkFadeIn {
+  to { opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .kevina-draw-layer {
     animation: none;
@@ -56,6 +67,11 @@
   }
 
   .kevina-final-layer {
+    animation: none;
+    opacity: 1;
+  }
+
+  .kevina-link-item {
     animation: none;
     opacity: 1;
   }
