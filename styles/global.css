@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config '../tailwind.config.mjs';
+@import 'tailwindcss';
+
+.font-libre {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+}
 
 .fadeIn {
   animation-name: fadeIn;

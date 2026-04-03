@@ -1,7 +1,7 @@
 import headlessui from '@headlessui/tailwindcss';
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   content: [
     './components/**/*.{ts,tsx}',
     './pages/**/*.{ts,tsx}',
@@ -14,3 +14,5 @@ module.exports = {
     extend: {},
   },
 };
+
+export default config;

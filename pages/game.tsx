@@ -26,6 +26,7 @@ export default function Index() {
     }
 
     if (x > 3 * window.innerWidth / 4 - 3 * size / 2 && x < 3 * window.innerWidth / 4 + size / 2 && y > size * 10.5 && y < size * 12.5) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTwo(true);
     }
   }, [x, y, size]);
@@ -55,43 +56,43 @@ export default function Index() {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       switch (event.key) {
-      case 'ArrowDown':
-      case 's':
-        setVelocityY(speed);
-        break;
-      case 'ArrowLeft':
-      case 'a':
-        setVelocityX(-speed);
-        break;
-      case 'ArrowRight':
-      case 'd':
-        setVelocityX(speed);
-        break;
-      case 'ArrowUp':
-      case 'w':
-        setVelocityY(-speed);
-        break;
+        case 'ArrowDown':
+        case 's':
+          setVelocityY(speed);
+          break;
+        case 'ArrowLeft':
+        case 'a':
+          setVelocityX(-speed);
+          break;
+        case 'ArrowRight':
+        case 'd':
+          setVelocityX(speed);
+          break;
+        case 'ArrowUp':
+        case 'w':
+          setVelocityY(-speed);
+          break;
       }
     };
 
     const handleKeyUp = (event: KeyboardEvent) => {
       switch (event.key) {
-      case 'ArrowDown':
-      case 's':
-        setVelocityY(0);
-        break;
-      case 'ArrowLeft':
-      case 'a':
-        setVelocityX(0);
-        break;
-      case 'ArrowRight':
-      case 'd':
-        setVelocityX(0);
-        break;
-      case 'ArrowUp':
-      case 'w':
-        setVelocityY(0);
-        break;
+        case 'ArrowDown':
+        case 's':
+          setVelocityY(0);
+          break;
+        case 'ArrowLeft':
+        case 'a':
+          setVelocityX(0);
+          break;
+        case 'ArrowRight':
+        case 'd':
+          setVelocityX(0);
+          break;
+        case 'ArrowUp':
+        case 'w':
+          setVelocityY(0);
+          break;
       }
     };
 
@@ -176,6 +177,7 @@ export default function Index() {
   useEffect(() => {
     if (x < -size || x > window.innerWidth || y < -size || health < 0) {
       // TODO: auto-restart
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setX(0);
       setY(0);
       setVelocityX(0);
