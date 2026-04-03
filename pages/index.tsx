@@ -39,16 +39,16 @@ export default function HomePage() {
         <meta name='description' content='Kevina homepage' />
       </Head>
 
-      <div className={`${inter.className} bg-[#FDFFFE] text-black flex items-center justify-center px-6`}>
+      <div className={`${inter.className} bg-[#FDFFFE] text-black flex items-center justify-center px-1`}>
         <div className='w-full max-w-2xl flex flex-col items-center gap-20 py-12 md:py-20'>
-          <div className='relative w-60 max-w-[700px] h-auto'>
+          <div className='relative w-60 max-w-full h-auto'>
             <Image
               key={`draw-${animationToken}`}
               src={`/kevina-cursive-draw.svg?v=${animationToken}`}
               alt='Kevina'
               width={240}
               height={240}
-              className='w-60 max-w-[700px] h-auto kevina-draw-layer'
+              className='w-60 max-w-full h-auto kevina-draw-layer'
               style={{ animationDelay: `${DRAW_TOTAL_MS}ms`, height: 'auto' }}
             />
             <Image
@@ -57,7 +57,7 @@ export default function HomePage() {
               alt='Kevina'
               width={240}
               height={240}
-              className='w-60 max-w-[700px] h-auto absolute inset-0 kevina-final-layer'
+              className='w-60 max-w-full h-auto absolute inset-0 kevina-final-layer'
               style={{ animationDelay: `${DRAW_TOTAL_MS}ms`, height: 'auto' }}
             />
           </div>
@@ -86,7 +86,7 @@ export default function HomePage() {
                     href={link.href}
                     className='kevina-link-row grid w-full grid-cols-[1fr_auto] items-center gap-4 px-4 py-3 text-lg transition'
                   >
-                    <span className='text-sm font-medium'>{link.label}</span>
+                    <span className='kevina-link-title text-sm font-medium'>{link.label}</span>
                     <span className='text-xs text-black/50 tabular-nums'>{link.date}</span>
                   </Link>
                 </li>
