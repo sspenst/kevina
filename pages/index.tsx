@@ -11,6 +11,8 @@ const links = [
 ];
 
 export default function HomePage() {
+  const DRAW_TOTAL_MS = 750;
+
   return (
     <>
       <Head>
@@ -19,14 +21,25 @@ export default function HomePage() {
       </Head>
 
       <div className={`${inter.className} min-h-screen bg-[#FDFFFE] text-black flex items-center justify-center px-6`}>
-        <div className='w-full max-w-2xl flex flex-col items-center gap-16'>
-          <Image
-            src='/kevina-title.svg'
-            alt='Kevina'
-            width={240}
-            height={240}
-            className='w-60 max-w-[700px] h-auto'
-          />
+        <div className='w-full max-w-2xl flex flex-col items-center gap-16 pt-6 pb-12'>
+          <div className='relative w-60 max-w-[700px] h-auto'>
+            <Image
+              src='/kevina-cursive-draw.svg'
+              alt='Kevina'
+              width={240}
+              height={240}
+              className='w-60 max-w-[700px] h-auto kevina-draw-layer'
+              style={{ animationDelay: `${DRAW_TOTAL_MS}ms` }}
+            />
+            <Image
+              src='/kevina-cursive.svg'
+              alt='Kevina'
+              width={240}
+              height={240}
+              className='w-60 max-w-[700px] h-auto absolute inset-0 kevina-final-layer'
+              style={{ animationDelay: `${DRAW_TOTAL_MS}ms` }}
+            />
+          </div>
 
           <nav aria-label='Site links' className='w-full max-w-md'>
 

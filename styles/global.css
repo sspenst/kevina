@@ -26,3 +26,37 @@
   0%, 100% { opacity: 0; }
   5% { opacity: 1; }
 }
+
+.kevina-draw-layer {
+  opacity: 1;
+  animation: kevinaDrawFadeOut 1s ease forwards;
+}
+
+.kevina-final-layer {
+  opacity: 0;
+  animation: kevinaFinalFadeIn 1s ease forwards;
+}
+
+@keyframes kevinaDrawFadeOut {
+  to { opacity: 0; }
+}
+
+@keyframes kevinaFinalFadeIn {
+  to { opacity: 1; }
+}
+
+.kevina-final-layer.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kevina-draw-layer {
+    animation: none;
+    opacity: 0;
+  }
+
+  .kevina-final-layer {
+    animation: none;
+    opacity: 1;
+  }
+}
