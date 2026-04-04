@@ -67,7 +67,7 @@ export default function HomePage() {
 
           <nav aria-label='Site links' className='w-full max-w-md'>
 
-            <ul className='w-full'>
+            <ul className='kevina-link-list w-full'>
               {/* <li className='border-b border-black/5 last:border-b-0'>
                 <div
                   className='grid w-full grid-cols-[1fr_auto] items-center gap-4 px-4 py-3 text-lg transition hover:bg-black/5 cursor-default'

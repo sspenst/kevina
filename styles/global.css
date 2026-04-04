@@ -57,6 +57,16 @@
   animation-fill-mode: forwards;
 }
 
+.kevina-link-list:hover .kevina-link-row,
+.kevina-link-list:focus-within .kevina-link-row {
+  opacity: 0.4;
+}
+
+.kevina-link-list:hover .kevina-link-item:hover .kevina-link-row,
+.kevina-link-list:focus-within .kevina-link-item:focus-within .kevina-link-row {
+  opacity: 1;
+}
+
 .kevina-link-title {
   display: inline-flex;
   align-items: center;
