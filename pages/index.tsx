@@ -41,7 +41,7 @@ export default function HomePage() {
         <meta name='description' content='Kevina homepage' />
       </Head>
 
-      <div className={`${inter.className} bg-[#FDFFFE] text-black flex items-center justify-center px-6`}>
+      <div className={`${inter.className} min-h-screen bg-[#FDFFFE] text-black flex justify-center px-6`}>
         <div className='w-full max-w-2xl flex flex-col items-center gap-20 py-12 md:py-20'>
           <div className='grid w-60 max-w-full'>
             <Image
@@ -81,7 +81,7 @@ export default function HomePage() {
                   key={link.href}
                   className='kevina-link-item border-b border-black/5 first:border-t'
                   style={{
-                    animationDelay: `${DRAW_TOTAL_MS + (index + 1) * LIST_ITEM_FADE_MS}ms`,
+                    animationDelay: `${DRAW_TOTAL_MS + (index + 2) * (LIST_ITEM_FADE_MS / 2)}ms`,
                     animationDuration: `${LIST_ITEM_FADE_MS}ms`,
                   }}
                 >
