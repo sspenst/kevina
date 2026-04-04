@@ -56,10 +56,6 @@
   animation-fill-mode: forwards;
 }
 
-.kevina-link-row {
-  padding-right: 1rem;
-}
-
 .kevina-link-title {
   display: inline-flex;
   align-items: center;
@@ -70,6 +66,7 @@
   content: '';
   width: 0.875rem;
   height: 0.875rem;
+  min-width: 0.875rem;
   background-color: rgb(0 0 0);
   opacity: 0;
   transform: translate(-0.2rem, 0.5px);

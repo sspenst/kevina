@@ -17,6 +17,8 @@ const links = [
 export default function HomePage() {
   const DRAW_TOTAL_MS = 750;
   const LIST_ITEM_FADE_MS = 220;
+  const LOGO_WIDTH = 1332;
+  const LOGO_HEIGHT = 321;
   const [animationToken, setAnimationToken] = React.useState('initial');
 
   React.useEffect(() => {
@@ -39,30 +41,31 @@ export default function HomePage() {
         <meta name='description' content='Kevina homepage' />
       </Head>
 
-      <div className={`${inter.className} bg-[#FDFFFE] text-black flex items-center justify-center px-1`}>
+      <div className={`${inter.className} bg-[#FDFFFE] text-black flex items-center justify-center px-6`}>
         <div className='w-full max-w-2xl flex flex-col items-center gap-20 py-12 md:py-20'>
-          <div className='relative w-60 max-w-full h-auto'>
+          <div className='grid w-60 max-w-full'>
             <Image
               key={`draw-${animationToken}`}
               src={`/kevina-cursive-draw.svg?v=${animationToken}`}
               alt='Kevina'
-              width={240}
-              height={240}
-              className='w-60 max-w-full h-auto kevina-draw-layer'
+              width={LOGO_WIDTH}
+              height={LOGO_HEIGHT}
+              priority
+              className='col-start-1 row-start-1 w-full h-auto kevina-draw-layer'
               style={{ animationDelay: `${DRAW_TOTAL_MS}ms`, height: 'auto' }}
             />
             <Image
               key={`final-${animationToken}`}
               src={`/kevina-cursive.svg?v=${animationToken}`}
               alt='Kevina'
-              width={240}
-              height={240}
-              className='w-60 max-w-full h-auto absolute inset-0 kevina-final-layer'
+              width={LOGO_WIDTH}
+              height={LOGO_HEIGHT}
+              className='col-start-1 row-start-1 w-full h-auto kevina-final-layer'
               style={{ animationDelay: `${DRAW_TOTAL_MS}ms`, height: 'auto' }}
             />
           </div>
 
-          <nav aria-label='Site links' className='w-full max-w-sm'>
+          <nav aria-label='Site links' className='w-full max-w-md'>
 
             <ul className='w-full'>
               {/* <li className='border-b border-black/5 last:border-b-0'>
@@ -76,7 +79,7 @@ export default function HomePage() {
               {links.map((link, index) => (
                 <li
                   key={link.href}
-                  className='kevina-link-item'
+                  className='kevina-link-item border-b border-black/5 first:border-t'
                   style={{
                     animationDelay: `${DRAW_TOTAL_MS + (index + 1) * LIST_ITEM_FADE_MS}ms`,
                     animationDuration: `${LIST_ITEM_FADE_MS}ms`,
@@ -84,7 +87,7 @@ export default function HomePage() {
                 >
                   <Link
                     href={link.href}
-                    className='kevina-link-row grid w-full grid-cols-[1fr_auto] items-center gap-4 px-4 py-3 text-lg transition'
+                    className='kevina-link-row grid w-full grid-cols-[1fr_auto] items-center gap-4 py-3 text-lg transition'
                   >
                     <span className='kevina-link-title text-sm font-medium'>{link.label}</span>
                     <span className='text-xs text-black/50 tabular-nums'>{link.date}</span>
