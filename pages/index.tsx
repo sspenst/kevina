@@ -106,7 +106,7 @@ export default function HomePage() {
           </div>
 
           <span
-            className='text-sm w-full kevina-fade-in mt-4'
+            className='text-sm w-full kevina-fade-in mt-2'
             style={{
               animationDelay: `${DRAW_TOTAL_MS}ms`,
               animationDuration: `${LIST_ITEM_FADE_MS}ms`,
