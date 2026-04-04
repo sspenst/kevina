@@ -29,11 +29,17 @@
 
 .kevina-draw-layer {
   opacity: 1;
-  animation: kevinaDrawFadeOut 1s ease forwards;
 }
 
 .kevina-final-layer {
   opacity: 0;
+}
+
+.kevina-animations-ready .kevina-draw-layer {
+  animation: kevinaDrawFadeOut 1s ease forwards;
+}
+
+.kevina-animations-ready .kevina-final-layer {
   animation: kevinaFinalFadeIn 1s ease forwards;
 }
 
@@ -51,6 +57,9 @@
 
 .kevina-fade-in {
   opacity: 0;
+}
+
+.kevina-animations-ready .kevina-fade-in {
   animation-name: kevinaFadeIn;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;

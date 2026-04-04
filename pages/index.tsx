@@ -14,6 +14,10 @@ const links = [
   { href: '/duck-game', label: 'Duck Game', date: '2024-05-11' },
 ];
 
+type PrerenderingDocument = Document & {
+  prerendering?: boolean;
+};
+
 export default function HomePage() {
   const DRAW_TOTAL_MS = 850;
   const LIST_ITEM_FADE_MS = 220;
@@ -21,17 +25,52 @@ export default function HomePage() {
   const LOGO_WIDTH = 1332;
   const LOGO_HEIGHT = 321;
   const [animationToken, setAnimationToken] = React.useState('initial');
+  const [animationsReady, setAnimationsReady] = React.useState(false);
+  const animationStartedRef = React.useRef(false);
 
   React.useEffect(() => {
-    const resetAnimation = () => {
-      setAnimationToken(createAnimationToken());
+    const doc = document as PrerenderingDocument;
+
+    const canStartAnimations = () => {
+      return document.visibilityState === 'visible' && !doc.prerendering;
     };
 
-    resetAnimation();
-    window.addEventListener('pageshow', resetAnimation);
+    const startAnimations = () => {
+      if (animationStartedRef.current || !canStartAnimations()) {
+        return;
+      }
+
+      animationStartedRef.current = true;
+      setAnimationToken(createAnimationToken());
+      setAnimationsReady(true);
+    };
+
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (!event.persisted) {
+        return;
+      }
+
+      animationStartedRef.current = false;
+      setAnimationsReady(false);
+      startAnimations();
+    };
+
+    startAnimations();
+
+    document.addEventListener('visibilitychange', startAnimations);
+    window.addEventListener('pageshow', handlePageShow);
+
+    if ('onprerenderingchange' in document) {
+      document.addEventListener('prerenderingchange', startAnimations as EventListener);
+    }
 
     return () => {
-      window.removeEventListener('pageshow', resetAnimation);
+      document.removeEventListener('visibilitychange', startAnimations);
+      window.removeEventListener('pageshow', handlePageShow);
+
+      if ('onprerenderingchange' in document) {
+        document.removeEventListener('prerenderingchange', startAnimations as EventListener);
+      }
     };
   }, []);
 
@@ -42,7 +81,7 @@ export default function HomePage() {
         <meta name='description' content='Kevina homepage' />
       </Head>
 
-      <div className={`${inter.className} min-h-screen bg-[#FDFFFE] text-black flex justify-center px-6`}>
+      <div className={`${inter.className} min-h-screen bg-[#FDFFFE] text-black flex justify-center px-6 ${animationsReady ? 'kevina-animations-ready' : ''}`}>
         <div className='w-full max-w-2xl flex flex-col items-center gap-12 py-12 md:py-20'>
           <div className='grid w-60 max-w-full'>
             <Image
@@ -113,7 +152,6 @@ export default function HomePage() {
           </div>
 
           <nav aria-label='Site links' className='w-full max-w-md'>
-
             <ul className='kevina-link-list w-full'>
               {/* <li className='border-b border-black/5 last:border-b-0'>
                 <div
