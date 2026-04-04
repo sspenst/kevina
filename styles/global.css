@@ -95,9 +95,13 @@
     filter: blur(5px);
   }
 
+  90% {
+    filter: blur(0);
+  }
+
   to {
     opacity: 1;
-    filter: blur(0);
+    filter: none;
   }
 }
 
