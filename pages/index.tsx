@@ -15,7 +15,7 @@ const links = [
 ];
 
 export default function HomePage() {
-  const DRAW_TOTAL_MS = 750;
+  const DRAW_TOTAL_MS = 850;
   const LIST_ITEM_FADE_MS = 220;
   const LOGO_WIDTH = 1332;
   const LOGO_HEIGHT = 321;
@@ -42,7 +42,7 @@ export default function HomePage() {
       </Head>
 
       <div className={`${inter.className} min-h-screen bg-[#FDFFFE] text-black flex justify-center px-6`}>
-        <div className='w-full max-w-2xl flex flex-col items-center gap-20 py-12 md:py-20'>
+        <div className='w-full max-w-2xl flex flex-col items-center gap-12 py-12 md:py-20'>
           <div className='grid w-60 max-w-full'>
             <Image
               key={`draw-${animationToken}`}
@@ -65,6 +65,22 @@ export default function HomePage() {
             />
           </div>
 
+          <div
+            className='kevina-fade-in text-sm max-w-md w-full flex flex-col gap-5 items-end mt-4'
+            style={{
+              animationDelay: `${DRAW_TOTAL_MS}ms`,
+              animationDuration: `${LIST_ITEM_FADE_MS}ms`,
+            }}
+          >
+            <span className='w-full'>A collection of websites I&apos;ve made for you over the years.</span>
+            <span className='w-full'>Crafted with care by your husband,</span>
+            {/* <span className='text-right'>Spencer</span> */}
+            <div className='flex flex-col items-end gap-1'>
+              <Image src='/spencer-sig.png' alt='Spencer Signature' width={100} height={100} className='w-28' />
+              <Image src='/heart.png' alt='Heart' width={100} height={100} className='w-10' />
+            </div>
+          </div>
+
           <nav aria-label='Site links' className='w-full max-w-md'>
 
             <ul className='kevina-link-list w-full'>
@@ -79,15 +95,15 @@ export default function HomePage() {
               {links.map((link, index) => (
                 <li
                   key={link.href}
-                  className='kevina-link-item border-b border-black/5 first:border-t'
+                  className='kevina-link-item kevina-fade-in border-b border-black/5 first:border-t'
                   style={{
-                    animationDelay: `${DRAW_TOTAL_MS + (index + 2) * (LIST_ITEM_FADE_MS / 2)}ms`,
+                    animationDelay: `${DRAW_TOTAL_MS + (index + 1) * (LIST_ITEM_FADE_MS / 2)}ms`,
                     animationDuration: `${LIST_ITEM_FADE_MS}ms`,
                   }}
                 >
                   <Link
                     href={link.href}
-                    className='kevina-link-row grid w-full grid-cols-[1fr_auto] items-center gap-4 py-3 text-lg transition'
+                    className='kevina-link-row flex justify-between flex-wrap w-full items-center gap-4 py-3 text-lg transition'
                   >
                     <span className='kevina-link-title text-sm font-medium'>{link.label}</span>
                     <span className='text-xs text-black/50 tabular-nums'>{link.date}</span>
@@ -96,6 +112,10 @@ export default function HomePage() {
               ))}
             </ul>
           </nav>
+
+          <span className='text-sm w-full max-w-md text-black/50'>
+            Built by <a href='https://sspenst.com' className='text-black/50 hover:text-black transition'>Spencer Spenst</a>
+          </span>
         </div>
       </div>
     </>

@@ -49,10 +49,9 @@
   opacity: 1;
 }
 
-.kevina-link-item {
+.kevina-fade-in {
   opacity: 0;
-  filter: blur(5px);
-  animation-name: kevinaLinkFadeIn;
+  animation-name: kevinaFadeIn;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
@@ -99,19 +98,13 @@
   transform: translate(0, 0.5px);
 }
 
-@keyframes kevinaLinkFadeIn {
+@keyframes kevinaFadeIn {
   from {
     opacity: 0;
-    filter: blur(5px);
-  }
-
-  90% {
-    filter: blur(0);
   }
 
   to {
     opacity: 1;
-    filter: none;
   }
 }
 
@@ -126,9 +119,8 @@
     opacity: 1;
   }
 
-  .kevina-link-item {
+  .kevina-fade-in {
     animation: none;
     opacity: 1;
-    filter: none;
   }
 }
