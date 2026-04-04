@@ -82,7 +82,7 @@ export default function HomePage() {
       </Head>
 
       <div className={`${inter.className} min-h-screen bg-[#FDFFFE] text-black flex justify-center px-6 ${animationsReady ? 'kevina-animations-ready' : ''}`}>
-        <div className='w-full max-w-2xl flex flex-col items-center gap-12 py-12 md:py-20'>
+        <div className='w-full max-w-md flex flex-col items-center gap-12 py-12 md:py-20'>
           <div className='grid w-60 max-w-full'>
             <Image
               key={`draw-${animationToken}`}
@@ -105,68 +105,24 @@ export default function HomePage() {
             />
           </div>
 
-          <div className='text-sm max-w-md w-full flex flex-col gap-5 items-end mt-4'>
-            <span
-              className='w-full kevina-fade-in'
-              style={{
-                animationDelay: `${DRAW_TOTAL_MS}ms`,
-                animationDuration: `${LIST_ITEM_FADE_MS}ms`,
-              }}
-            >
-              A collection of websites I&apos;ve made for you over the years.
-            </span>
-            <span
-              className='w-full kevina-fade-in'
-              style={{
-                animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS}ms`,
-                animationDuration: `${LIST_ITEM_FADE_MS}ms`,
-              }}
-            >
-              Crafted with care by your husband,
-            </span>
-            {/* <span className='text-right'>Spencer</span> */}
-            <div className='flex flex-col items-end gap-1'>
-              <Image
-                src='/spencer-sig.png'
-                alt='Spencer Signature'
-                width={100}
-                height={100}
-                className='w-28 kevina-fade-in'
-                style={{
-                  animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * 2}ms`,
-                  animationDuration: `${LIST_ITEM_FADE_MS}ms`,
-                }}
-              />
-              <Image
-                src='/heart.png'
-                alt='Heart'
-                width={100}
-                height={100}
-                className='w-10 kevina-fade-in'
-                style={{
-                  animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * 3}ms`,
-                  animationDuration: `${LIST_ITEM_FADE_MS}ms`,
-                }}
-              />
-            </div>
-          </div>
+          <span
+            className='text-sm w-full kevina-fade-in mt-4'
+            style={{
+              animationDelay: `${DRAW_TOTAL_MS}ms`,
+              animationDuration: `${LIST_ITEM_FADE_MS}ms`,
+            }}
+          >
+            A collection of pages I&apos;ve made you over the years.
+          </span>
 
-          <nav aria-label='Site links' className='w-full max-w-md'>
+          <nav aria-label='Site links' className='w-full'>
             <ul className='kevina-link-list w-full'>
-              {/* <li className='border-b border-black/5 last:border-b-0'>
-                <div
-                  className='grid w-full grid-cols-[1fr_auto] items-center gap-4 px-4 py-3 text-lg transition hover:bg-black/5 cursor-default'
-                >
-                  <span className='text-sm text-orange-600 font-medium'>Under Construction</span>
-                  <span className='text-xs text-black/70 tabular-nums'>2026-05-11</span>
-                </div>
-              </li> */}
               {links.map((link, index) => (
                 <li
                   key={link.href}
                   className='kevina-link-item kevina-fade-in border-b border-black/5 first:border-t'
                   style={{
-                    animationDelay: `${DRAW_TOTAL_MS + (index + 4) * FADE_DIFF_MS}ms`,
+                    animationDelay: `${DRAW_TOTAL_MS + (index + 1) * FADE_DIFF_MS}ms`,
                     animationDuration: `${LIST_ITEM_FADE_MS}ms`,
                   }}
                 >
@@ -182,12 +138,43 @@ export default function HomePage() {
             </ul>
           </nav>
 
-          <span className='text-sm w-full max-w-md text-black/40 kevina-fade-in' style={{
-            animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * 7}ms`,
-            animationDuration: `${LIST_ITEM_FADE_MS}ms`,
-          }}>
-            Built by <a href='https://sspenst.com' className='text-black/40 hover:text-black transition'>Spencer Spenst</a>
-          </span>
+          <div className='text-sm w-full flex flex-col gap-5 items-end'>
+            <span
+              className='w-full kevina-fade-in'
+              style={{
+                animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * 4}ms`,
+                animationDuration: `${LIST_ITEM_FADE_MS}ms`,
+              }}
+            >
+              Crafted with care by your husband,
+            </span>
+            <div className='flex flex-col items-end gap-1'>
+              <a href='https://sspenst.com'>
+                <Image
+                  src='/spencer-sig.png'
+                  alt='Spencer Signature'
+                  width={100}
+                  height={100}
+                  className='w-28 kevina-fade-in'
+                  style={{
+                    animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * 5}ms`,
+                    animationDuration: `${LIST_ITEM_FADE_MS}ms`,
+                  }}
+                />
+              </a>
+              <Image
+                src='/heart.png'
+                alt='Heart'
+                width={100}
+                height={100}
+                className='w-10 kevina-fade-in'
+                style={{
+                  animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * 6}ms`,
+                  animationDuration: `${LIST_ITEM_FADE_MS}ms`,
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>
