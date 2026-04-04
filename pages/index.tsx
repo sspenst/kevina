@@ -82,7 +82,7 @@ export default function HomePage() {
       </Head>
 
       <div className={`${inter.className} min-h-screen bg-[#FDFFFE] text-black flex justify-center px-6 ${animationsReady ? 'kevina-animations-ready' : ''}`}>
-        <div className='w-full max-w-md flex flex-col items-center gap-12 py-12 md:py-20'>
+        <div className='w-full max-w-md flex flex-col gap-12 py-12 md:py-20'>
           <div className='grid w-60 max-w-full'>
             <Image
               key={`draw-${animationToken}`}
@@ -138,7 +138,7 @@ export default function HomePage() {
             </ul>
           </nav>
 
-          <div className='text-sm w-full flex flex-col gap-5 items-end'>
+          <div className='text-sm w-full flex flex-col gap-8 items-end'>
             <span
               className='w-full kevina-fade-in'
               style={{

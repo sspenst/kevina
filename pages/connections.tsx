@@ -142,7 +142,7 @@ export default function ConnectionsPage() {
 
       <div className={`${geistSans.className} min-h-screen flex items-center justify-center bg-white text-black`}>
         <div className='max-w-[600px] w-full p-2'>
-          <Link href='/' className='flex items-center gap-2 text-black/50 hover:text-black transition px-2 w-fit mb-1'>
+          <Link href='/' className='flex items-center gap-2 text-black/50 hover:text-black transition px-2 w-fit mb-4'>
             <ChevronLeft className='w-4 h-4' />
             Home
           </Link>
