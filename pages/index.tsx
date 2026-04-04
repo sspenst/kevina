@@ -17,6 +17,7 @@ const links = [
 export default function HomePage() {
   const DRAW_TOTAL_MS = 850;
   const LIST_ITEM_FADE_MS = 220;
+  const FADE_DIFF_MS = 50;
   const LOGO_WIDTH = 1332;
   const LOGO_HEIGHT = 321;
   const [animationToken, setAnimationToken] = React.useState('initial');
@@ -76,8 +77,28 @@ export default function HomePage() {
             <span className='w-full'>Crafted with care by your husband,</span>
             {/* <span className='text-right'>Spencer</span> */}
             <div className='flex flex-col items-end gap-1'>
-              <Image src='/spencer-sig.png' alt='Spencer Signature' width={100} height={100} className='w-28' />
-              <Image src='/heart.png' alt='Heart' width={100} height={100} className='w-10' />
+              <Image
+                src='/spencer-sig.png'
+                alt='Spencer Signature'
+                width={100}
+                height={100}
+                className='w-28 kevina-fade-in'
+                style={{
+                  animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS}ms`,
+                  animationDuration: `${LIST_ITEM_FADE_MS}ms`,
+                }}
+              />
+              <Image
+                src='/heart.png'
+                alt='Heart'
+                width={100}
+                height={100}
+                className='w-10 kevina-fade-in'
+                style={{
+                  animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * 2}ms`,
+                  animationDuration: `${LIST_ITEM_FADE_MS}ms`,
+                }}
+              />
             </div>
           </div>
 
@@ -97,7 +118,7 @@ export default function HomePage() {
                   key={link.href}
                   className='kevina-link-item kevina-fade-in border-b border-black/5 first:border-t'
                   style={{
-                    animationDelay: `${DRAW_TOTAL_MS + (index + 1) * (LIST_ITEM_FADE_MS / 2)}ms`,
+                    animationDelay: `${DRAW_TOTAL_MS + (index + 3) * FADE_DIFF_MS}ms`,
                     animationDuration: `${LIST_ITEM_FADE_MS}ms`,
                   }}
                 >
@@ -113,8 +134,11 @@ export default function HomePage() {
             </ul>
           </nav>
 
-          <span className='text-sm w-full max-w-md text-black/50'>
-            Built by <a href='https://sspenst.com' className='text-black/50 hover:text-black transition'>Spencer Spenst</a>
+          <span className='text-sm w-full max-w-md text-black/40 kevina-fade-in' style={{
+            animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * 6}ms`,
+            animationDuration: `${LIST_ITEM_FADE_MS}ms`,
+          }}>
+            Built by <a href='https://sspenst.com' className='text-black/40 hover:text-black transition'>Spencer Spenst</a>
           </span>
         </div>
       </div>
