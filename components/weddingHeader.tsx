@@ -11,14 +11,19 @@ export default function WeddingHeader() {
   return (
     <header className={classNames(libreBaskerville.className, 'p-4 sticky top-0 z-20 flex justify-center', { 'bg-white': router.pathname === '/photos' })}>
       <div className='flex items-center justify-between px-4 py-3 rounded-full border border-white backdrop-blur-lg max-w-5xl w-full'>
-        <Link aria-label='Home' href='/wedding' className='flex items-center gap-6 font-medium hover:opacity-50 transition pl-2'>
-          <div className='flex gap-2'>
-            <Image alt='Kevina & Spencer Spenst' height={312} src='/ks.png' width={340} className='h-8 w-auto' />
-          </div>
-          <span className='text-xl'>
-            Kevina & Spencer
-          </span>
-        </Link>
+        <div className='flex items-center gap-6 pl-2'>
+          <Link className='hover:opacity-50 transition' href='/'>
+            <Image alt='Kevina & Spencer Spenst' height={426} src='/favicon.png' width={471} className='h-8 w-auto' />
+          </Link>
+          <Link aria-label='Home' href='/wedding' className='flex items-center gap-6 font-medium hover:opacity-50 transition'>
+            <div className='flex gap-2'>
+              <Image alt='Kevina & Spencer Spenst' height={312} src='/ks.png' width={340} className='h-8 w-auto' />
+            </div>
+            <span className='text-xl'>
+              Kevina & Spencer
+            </span>
+          </Link>
+        </div>
         <div className='flex gap-6 items-center pr-2'>
           <Link aria-label='Photos' href='/photos' className='hover:text-neutral-500 text-black'>Photos</Link>
           <Link href='/duck-game' className='-scale-x-100 opacity-50 hover:opacity-100 transition'>
