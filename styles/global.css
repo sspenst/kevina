@@ -1,6 +1,16 @@
 @config '../tailwind.config.mjs';
 @import 'tailwindcss';
 
+::selection {
+  background: rgba(160, 195, 90, 0.4);
+  color: #000;
+}
+
+::-moz-selection {
+  background: rgba(160, 195, 90, 0.4);
+  color: #000;
+}
+
 .kevina-cursive-stroke {
   fill: none;
   stroke: #000;
