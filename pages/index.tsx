@@ -81,8 +81,8 @@ export default function HomePage() {
         <meta name='description' content='Kevina homepage' />
       </Head>
 
-      <div className={`${inter.className} min-h-screen bg-[#FDFFFE] text-black flex justify-center px-6 ${animationsReady ? 'kevina-animations-ready' : ''}`}>
-        <div className='w-full max-w-md flex flex-col gap-12 py-12 md:py-20'>
+      <div className={`${inter.className} bg-[#FDFFFE] text-black flex justify-center px-6 ${animationsReady ? 'kevina-animations-ready' : ''}`}>
+        <div className='w-full max-w-md flex flex-col gap-12 py-20'>
           <div className='grid w-60 max-w-full'>
             <Image
               key={`draw-${animationToken}`}
