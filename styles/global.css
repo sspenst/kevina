@@ -1,17 +1,36 @@
 @config '../tailwind.config.mjs';
 @import 'tailwindcss';
 
-.flash {
-  animation-name: flash;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+.kevina-cursive-stroke {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
 }
 
-@keyframes flash {
-  0%, 100% { opacity: 0; }
-  5% { opacity: 1; }
+.kevina-cursive-fill {
+  fill: #000;
+  stroke: #000;
+}
+
+.kevina-animations-ready .kevina-cursive-stroke-1 {
+  animation: kevinaCursiveStrokeDraw1 1.8s ease-out forwards;
+}
+
+.kevina-animations-ready .kevina-cursive-stroke-2 {
+  animation: kevinaCursiveStrokeDraw2 5.2s ease-out 0.15s forwards;
+}
+
+@keyframes kevinaCursiveStrokeDraw1 {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes kevinaCursiveStrokeDraw2 {
+  to { stroke-dashoffset: 0; }
 }
 
 .kevina-cursive-draw {
@@ -102,6 +121,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .kevina-cursive-stroke {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
   .kevina-cursive-draw {
     animation: none;
     opacity: 0;
@@ -116,4 +140,17 @@
     animation: none;
     opacity: 1;
   }
+}
+
+.flash {
+  animation-name: flash;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 0; }
+  5% { opacity: 1; }
 }

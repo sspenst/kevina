@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import KevinaCursive from '../components/KevinaCursive';
 import { inter } from '../lib/fonts';
 
 function createAnimationToken() {
@@ -22,8 +23,6 @@ export default function HomePage() {
   const DRAW_TOTAL_MS = 850;
   const LIST_ITEM_FADE_MS = 220;
   const FADE_DIFF_MS = 50;
-  const LOGO_WIDTH = 1332;
-  const LOGO_HEIGHT = 321;
   const [animationToken, setAnimationToken] = React.useState('initial');
   const [animationsReady, setAnimationsReady] = React.useState(false);
   const animationStartedRef = React.useRef(false);
@@ -83,27 +82,13 @@ export default function HomePage() {
 
       <div className={`${inter.className} bg-[#FDFFFE] text-black flex justify-center px-6 ${animationsReady ? 'kevina-animations-ready' : ''}`}>
         <div className='w-full max-w-md flex flex-col gap-12 py-20'>
-          <div className='grid w-60 max-w-full'>
-            <Image
-              key={`draw-${animationToken}`}
-              src={`/kevina-cursive-draw.svg?v=${animationToken}`}
-              alt='Kevina'
-              width={LOGO_WIDTH}
-              height={LOGO_HEIGHT}
-              priority
-              className='col-start-1 row-start-1 w-full h-auto kevina-cursive-draw'
-              style={{ animationDelay: `${DRAW_TOTAL_MS}ms`, height: 'auto' }}
+          {!animationsReady ? null :
+            <KevinaCursive
+              key={animationToken}
+              runToken={animationToken}
+              drawDelayMs={DRAW_TOTAL_MS}
             />
-            <Image
-              key={`final-${animationToken}`}
-              src={`/kevina-cursive.svg?v=${animationToken}`}
-              alt='Kevina'
-              width={LOGO_WIDTH}
-              height={LOGO_HEIGHT}
-              className='col-start-1 row-start-1 w-full h-auto kevina-cursive'
-              style={{ animationDelay: `${DRAW_TOTAL_MS}ms`, height: 'auto' }}
-            />
-          </div>
+          }
 
           <span
             className='text-sm w-full kevina-fade-in mt-2'
