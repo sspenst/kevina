@@ -10,6 +10,7 @@ function createAnimationToken() {
 }
 
 const links = [
+  // { href: '/wordle', label: 'Wordle', date: '2026-05-11' },
   { href: '/connections', label: 'Connections', date: '2025-05-11' },
   { href: '/wedding', label: 'Wedding', date: '2024-11-15' },
   { href: '/duck-game', label: 'Duck Game', date: '2024-05-11' },
@@ -22,7 +23,7 @@ type PrerenderingDocument = Document & {
 export default function HomePage() {
   const DRAW_TOTAL_MS = 850;
   const LIST_ITEM_FADE_MS = 220;
-  const FADE_DIFF_MS = 50;
+  const FADE_DIFF_MS = 40;
   const [animationToken, setAnimationToken] = React.useState('initial');
   const [animationsReady, setAnimationsReady] = React.useState(false);
   const animationStartedRef = React.useRef(false);
@@ -41,7 +42,9 @@ export default function HomePage() {
 
       animationStartedRef.current = true;
       setAnimationToken(createAnimationToken());
-      setAnimationsReady(true);
+      setTimeout(() => {
+        setAnimationsReady(true);
+      }, 50);
     };
 
     const handlePageShow = (event: PageTransitionEvent) => {
@@ -127,7 +130,7 @@ export default function HomePage() {
             <span
               className='w-full kevina-fade-in'
               style={{
-                animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * 4}ms`,
+                animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * (links.length + 1)}ms`,
                 animationDuration: `${LIST_ITEM_FADE_MS}ms`,
               }}
             >
@@ -142,7 +145,7 @@ export default function HomePage() {
                   height={100}
                   className='w-28 kevina-fade-in'
                   style={{
-                    animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * 5}ms`,
+                    animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * (links.length + 2)}ms`,
                     animationDuration: `${LIST_ITEM_FADE_MS}ms`,
                   }}
                 />
@@ -154,7 +157,7 @@ export default function HomePage() {
                 height={100}
                 className='w-10 kevina-fade-in'
                 style={{
-                  animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * 6}ms`,
+                  animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * (links.length + 3)}ms`,
                   animationDuration: `${LIST_ITEM_FADE_MS}ms`,
                 }}
               />
