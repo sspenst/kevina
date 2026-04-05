@@ -2,12 +2,12 @@
 @import 'tailwindcss';
 
 ::selection {
-  background: rgba(160, 195, 90, 0.4);
+  background: rgba(245, 176, 166, 0.4);
   color: #000;
 }
 
 ::-moz-selection {
-  background: rgba(160, 195, 90, 0.4);
+  background: rgba(245, 176, 166, 0.4);
   color: #000;
 }
 
