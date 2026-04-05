@@ -91,7 +91,7 @@ export default function HomePage() {
               width={LOGO_WIDTH}
               height={LOGO_HEIGHT}
               priority
-              className='col-start-1 row-start-1 w-full h-auto kevina-draw-layer'
+              className='col-start-1 row-start-1 w-full h-auto kevina-cursive-draw'
               style={{ animationDelay: `${DRAW_TOTAL_MS}ms`, height: 'auto' }}
             />
             <Image
@@ -100,7 +100,7 @@ export default function HomePage() {
               alt='Kevina'
               width={LOGO_WIDTH}
               height={LOGO_HEIGHT}
-              className='col-start-1 row-start-1 w-full h-auto kevina-final-layer'
+              className='col-start-1 row-start-1 w-full h-auto kevina-cursive'
               style={{ animationDelay: `${DRAW_TOTAL_MS}ms`, height: 'auto' }}
             />
           </div>

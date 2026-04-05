@@ -10,16 +10,16 @@ export default function WeddingHeader() {
 
   return (
     <header className={classNames(libreBaskerville.className, 'p-4 sticky top-0 z-20 flex justify-center', { 'bg-white': router.pathname === '/photos' })}>
-      <div className='flex items-center justify-between px-4 py-3 rounded-full border border-white backdrop-blur-lg max-w-5xl w-full'>
-        <div className='flex items-center gap-6 pl-2'>
+      <div className='flex items-center justify-between gap-6 px-4 py-3 rounded-full border border-white backdrop-blur-lg max-w-5xl w-full'>
+        <div className='flex items-center gap-6 pl-2 truncate'>
           <Link className='hover:opacity-50 transition' href='/'>
-            <Image alt='Kevina & Spencer Spenst' height={426} src='/favicon.png' width={471} className='h-8 w-auto' />
+            <Image alt='Kevina & Spencer Spenst' height={426} src='/favicon.png' width={471} className='h-8 w-8 min-w-8' />
           </Link>
-          <Link aria-label='Home' href='/wedding' className='flex items-center gap-6 font-medium hover:opacity-50 transition'>
+          <Link aria-label='Home' href='/wedding' className='flex items-center gap-6 font-medium hover:opacity-50 transition truncate max-w-full'>
             <div className='flex gap-2'>
-              <Image alt='Kevina & Spencer Spenst' height={312} src='/ks.png' width={340} className='h-8 w-auto' />
+              <Image alt='Kevina & Spencer Spenst' height={312} src='/ks.png' width={340} className='h-8 w-8 min-w-8' />
             </div>
-            <span className='text-xl'>
+            <span className='text-xl truncate'>
               Kevina & Spencer
             </span>
           </Link>

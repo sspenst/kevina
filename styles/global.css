@@ -1,19 +1,6 @@
 @config '../tailwind.config.mjs';
 @import 'tailwindcss';
 
-.fadeIn {
-  animation-name: fadeIn;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
 .flash {
   animation-name: flash;
   animation-duration: 1s;
@@ -27,33 +14,29 @@
   5% { opacity: 1; }
 }
 
-.kevina-draw-layer {
+.kevina-cursive-draw {
   opacity: 0;
 }
 
-.kevina-final-layer {
-  opacity: 0;
-}
-
-.kevina-animations-ready .kevina-draw-layer {
+.kevina-animations-ready .kevina-cursive-draw {
   opacity: 1;
-  animation: kevinaDrawFadeOut 1s ease forwards;
+  animation: kevinaCursiveDrawFadeOut 1s ease forwards;
 }
 
-.kevina-animations-ready .kevina-final-layer {
-  animation: kevinaFinalFadeIn 1s ease forwards;
-}
-
-@keyframes kevinaDrawFadeOut {
+@keyframes kevinaCursiveDrawFadeOut {
   to { opacity: 0; }
 }
 
-@keyframes kevinaFinalFadeIn {
-  to { opacity: 1; }
+.kevina-cursive {
+  opacity: 0;
 }
 
-.kevina-final-layer.is-visible {
-  opacity: 1;
+.kevina-animations-ready .kevina-cursive {
+  animation: kevinaCursiveFadeIn 1s ease forwards;
+}
+
+@keyframes kevinaCursiveFadeIn {
+  to { opacity: 1; }
 }
 
 .kevina-fade-in {
@@ -64,6 +47,16 @@
   animation-name: kevinaFadeIn;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
+}
+
+@keyframes kevinaFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .kevina-link-list:hover .kevina-link-row,
@@ -108,23 +101,13 @@
   transform: translate(0, 0.5px);
 }
 
-@keyframes kevinaFadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .kevina-draw-layer {
+  .kevina-cursive-draw {
     animation: none;
     opacity: 0;
   }
 
-  .kevina-final-layer {
+  .kevina-cursive {
     animation: none;
     opacity: 1;
   }
