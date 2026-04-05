@@ -28,7 +28,7 @@
 }
 
 .kevina-draw-layer {
-  opacity: 1;
+  opacity: 0;
 }
 
 .kevina-final-layer {
@@ -36,6 +36,7 @@
 }
 
 .kevina-animations-ready .kevina-draw-layer {
+  opacity: 1;
   animation: kevinaDrawFadeOut 1s ease forwards;
 }
 
