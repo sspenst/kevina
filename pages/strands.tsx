@@ -51,10 +51,9 @@ const isAdjacent = (a: Cell, b: Cell) => {
 
 const SPANGRAM = 'TIDEPOOL';
 
-const SELECTED_COLOR = 'rgb(239, 239, 230)';
-const LINE_COLOR = 'rgb(217, 217, 194)';
-const SPANGRAM_COLOR = 'rgb(249, 223, 109)';
-const FOUND_COLOR = 'rgb(176, 196, 239)';
+const SELECTED_COLOR = 'rgb(219, 216, 199)';
+const SPANGRAM_COLOR = 'rgb(242, 206, 70)';
+const FOUND_COLOR = 'rgb(184, 222, 235)';
 
 interface FoundWord {
   word: string;
@@ -364,7 +363,7 @@ export default function StrandsPage() {
                     y1={lp.from.y}
                     x2={lp.to.x}
                     y2={lp.to.y}
-                    stroke={LINE_COLOR}
+                    stroke={SELECTED_COLOR}
                     strokeWidth={10}
                     strokeLinecap='round'
                   />
