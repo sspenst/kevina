@@ -10,7 +10,7 @@ function createAnimationToken() {
 }
 
 const links = [
-  // { href: '/wordle', label: 'Wordle', date: '2026-05-11' },
+  { href: '/strands', label: 'Strands', date: '2026-05-11' },
   { href: '/connections', label: 'Connections', date: '2025-05-11' },
   { href: '/wedding', label: 'Wedding', date: '2024-11-15' },
   { href: '/duck-game', label: 'Duck Game', date: '2024-05-11' },
