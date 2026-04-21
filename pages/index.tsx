@@ -16,6 +16,15 @@ const links = [
   { href: '/duck-game', label: 'Duck Game', date: '2024-05-11' },
 ];
 
+function getTodayDateString() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
 type PrerenderingDocument = Document & {
   prerendering?: boolean;
 };
@@ -27,6 +36,11 @@ export default function HomePage() {
   const [animationToken, setAnimationToken] = React.useState('initial');
   const [animationsReady, setAnimationsReady] = React.useState(false);
   const animationStartedRef = React.useRef(false);
+  const visibleLinks = React.useMemo(() => {
+    const today = getTodayDateString();
+
+    return links.filter((link) => link.date <= today);
+  }, []);
 
   React.useEffect(() => {
     const doc = document as PrerenderingDocument;
@@ -105,7 +119,7 @@ export default function HomePage() {
 
           <nav aria-label='Site links' className='w-full'>
             <ul className='kevina-link-list w-full'>
-              {links.map((link, index) => (
+              {visibleLinks.map((link, index) => (
                 <li
                   key={link.href}
                   className='kevina-link-item kevina-fade-in border-b border-black/5 first:border-t'
@@ -130,7 +144,7 @@ export default function HomePage() {
             <span
               className='w-full kevina-fade-in'
               style={{
-                animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * (links.length + 1)}ms`,
+                animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * (visibleLinks.length + 1)}ms`,
                 animationDuration: `${LIST_ITEM_FADE_MS}ms`,
               }}
             >
@@ -145,7 +159,7 @@ export default function HomePage() {
                   height={100}
                   className='w-28 kevina-fade-in'
                   style={{
-                    animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * (links.length + 2)}ms`,
+                    animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * (visibleLinks.length + 2)}ms`,
                     animationDuration: `${LIST_ITEM_FADE_MS}ms`,
                   }}
                 />
@@ -157,7 +171,7 @@ export default function HomePage() {
                 height={100}
                 className='w-10 kevina-fade-in'
                 style={{
-                  animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * (links.length + 3)}ms`,
+                  animationDelay: `${DRAW_TOTAL_MS + FADE_DIFF_MS * (visibleLinks.length + 3)}ms`,
                   animationDuration: `${LIST_ITEM_FADE_MS}ms`,
                 }}
               />
