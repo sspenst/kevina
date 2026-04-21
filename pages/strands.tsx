@@ -11,12 +11,12 @@ const THEME = 'Oceanfront Property';
 const GRID: string[][] = [
   ['N', 'H', 'C', 'R', 'I', 'S'],
   ['O', 'I', 'A', 'T', 'F', 'H'],
-  ['T', 'S', 'E', 'L', 'S', 'S'],
-  ['S', 'T', 'E', 'P', 'L', 'E'],
-  ['U', 'I', 'D', 'O', 'O', 'A'],
-  ['B', 'M', 'N', 'O', 'U', 'R'],
-  ['A', 'R', 'E', 'M', 'H', 'C'],
-  ['C', 'A', 'N', 'E', 'N', 'I'],
+  ['T', 'S', 'U', 'M', 'S', 'N'],
+  ['S', 'T', 'E', 'P', 'L', 'I'],
+  ['E', 'I', 'D', 'O', 'O', 'H'],
+  ['B', 'L', 'N', 'O', 'R', 'C'],
+  ['A', 'R', 'E', 'M', 'A', 'U'],
+  ['C', 'A', 'N', 'E', 'E', 'S'],
 ];
 
 const WORDS: string[] = [
