@@ -69,9 +69,6 @@ export default function StrandsPage() {
   const [gridSize, setGridSize] = useState({ width: 0, height: 0 });
 
   const gridRef = useRef<HTMLDivElement>(null);
-  const cellRefs = useRef<(HTMLButtonElement | null)[][]>(
-    Array.from({ length: ROWS }, () => Array(COLS).fill(null))
-  );
 
   const selectedRef = useRef(selected);
   const foundWordsRef = useRef(foundWords);
@@ -98,7 +95,7 @@ export default function StrandsPage() {
 
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
-        const btn = cellRefs.current[r]?.[c];
+        const btn = grid.querySelector<HTMLButtonElement>(`[data-cell="${r},${c}"]`);
 
         if (!btn) continue;
 
@@ -169,8 +166,16 @@ export default function StrandsPage() {
     setSelected([]);
   }, []);
 
-  const handlePointerDown = (row: number, col: number, e: React.PointerEvent) => {
+  const handlePointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    const cellAttr = e.currentTarget.dataset.cell;
+
+    if (!cellAttr) return;
+
+    const [rowStr, colStr] = cellAttr.split(',');
+    const row = Number(rowStr);
+    const col = Number(colStr);
 
     pointerDownRef.current = true;
     dragMovedRef.current = false;
@@ -390,11 +395,8 @@ export default function StrandsPage() {
                   return (
                     <button
                       key={key}
-                      ref={(node) => {
-                        cellRefs.current[row][col] = node;
-                      }}
                       data-cell={`${row},${col}`}
-                      onPointerDown={(e) => handlePointerDown(row, col, e)}
+                      onPointerDown={handlePointerDown}
                       className='aspect-square flex items-center justify-center text-2xl font-semibold cursor-pointer bg-transparent'
                     >
                       <span
