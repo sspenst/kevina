@@ -330,9 +330,17 @@ export default function StrandsPage() {
             Home
           </Link>
 
-          <div className='text-center mb-6'>
-            <p className='uppercase tracking-widest text-xs text-black/50 mb-1'>Today&apos;s theme</p>
-            <p className='text-lg font-medium'>{THEME}</p>
+          <div className='flex items-center justify-center w-full'>
+            <div className='text-center mb-6 w-80' style={{
+
+            }}>
+              <p className='uppercase font-semibold text-xs bg-blue-200 rounded-t-md' style={{
+                backgroundColor: FOUND_COLOR,
+              }}>Today&apos;s theme</p>
+              <p className='text-lg font-bold p-1 border-b border-x rounded-b-md' style={{
+                borderColor: SELECTED_COLOR
+              }}>{THEME}</p>
+            </div>
           </div>
 
           <div className='min-h-[56px] flex items-center justify-center mb-6'>
