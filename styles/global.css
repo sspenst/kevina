@@ -228,8 +228,8 @@
 
 @keyframes strandsCellCelebrate {
   0% { transform: translateY(0) scale(1); }
-  35% { transform: translateY(-6px) scale(1.15); }
-  65% { transform: translateY(2px) scale(0.95); }
+  35% { transform: translateY(0px) scale(1.15); }
+  65% { transform: translateY(0px) scale(0.95); }
   100% { transform: translateY(0) scale(1); }
 }
 
