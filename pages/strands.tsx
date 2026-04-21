@@ -54,16 +54,28 @@ const SPANGRAM = 'TIDEPOOL';
 const SELECTED_COLOR = 'rgb(219, 216, 199)';
 const SPANGRAM_COLOR = 'rgb(242, 206, 70)';
 const FOUND_COLOR = 'rgb(184, 222, 235)';
+const FOUND_COLOR_DARK = 'rgb(107, 187, 214)';
 
 interface FoundWord {
   word: string;
   cells: Cell[];
 }
 
+type SubmissionStatus = 'correct' | 'incorrect' | 'win';
+
+interface Submission {
+  word: string;
+  status: SubmissionStatus;
+  color: string | null;
+  tick: number;
+}
+
 export default function StrandsPage() {
   const [selected, setSelected] = useState<Cell[]>([]);
   const [lastSubmittedWord, setLastSubmittedWord] = useState('');
+  const [lastSubmission, setLastSubmission] = useState<Submission | null>(null);
   const [foundWords, setFoundWords] = useState<FoundWord[]>([]);
+  const [gameWon, setGameWon] = useState(false);
   const [positions, setPositions] = useState<(Point | null)[][]>(() =>
     Array.from({ length: ROWS }, () => Array(COLS).fill(null))
   );
@@ -159,13 +171,27 @@ export default function StrandsPage() {
     const path = selectedRef.current;
     const word = path.map((c) => GRID[c.row][c.col]).join('');
     const alreadyFound = foundWordsRef.current.some((f) => f.word === word);
+    const isValidNew = word.length > 1 && WORDS.includes(word) && !alreadyFound;
+    const tick = Date.now();
 
-    if (word.length > 1 && WORDS.includes(word) && !alreadyFound) {
-      setFoundWords([...foundWordsRef.current, { word, cells: path }]);
-    }
+    if (isValidNew) {
+      const nextFound = [...foundWordsRef.current, { word, cells: path }];
 
-    if (word.length > 0) {
+      setFoundWords(nextFound);
+
+      if (nextFound.length === WORDS.length) {
+        setLastSubmittedWord('Happy birthday!');
+        setLastSubmission({ word: 'Happy birthday!', status: 'win', color: null, tick });
+        setGameWon(true);
+      } else {
+        const color = word === SPANGRAM ? SPANGRAM_COLOR : FOUND_COLOR_DARK;
+
+        setLastSubmittedWord(word);
+        setLastSubmission({ word, status: 'correct', color, tick });
+      }
+    } else if (word.length > 0) {
       setLastSubmittedWord(word);
+      setLastSubmission({ word, status: 'incorrect', color: null, tick });
     }
 
     setSelected([]);
@@ -348,9 +374,15 @@ export default function StrandsPage() {
 
           <div className='min-h-[56px] flex items-center justify-center'>
             {selected.length !== 0 ? (
-              <span className='text-2xl font-semibold tracking-[0.3em] uppercase'>{currentWord}</span>
-            ) : lastSubmittedWord && (
-              <span className='text-2xl font-semibold tracking-[0.3em] uppercase'>{lastSubmittedWord}</span>
+              <span className='text-2xl font-semibold tracking-widest uppercase'>{currentWord}</span>
+            ) : lastSubmission && (
+              <span
+                key={lastSubmission.tick}
+                className={`text-2xl font-semibold tracking-widest strands-submission strands-submission-${lastSubmission.status}${lastSubmission.status === 'win' ? '' : ' uppercase'}`}
+                style={lastSubmission.color ? { color: lastSubmission.color } : undefined}
+              >
+                {lastSubmittedWord}
+              </span>
             )}
           </div>
 
@@ -413,11 +445,12 @@ export default function StrandsPage() {
                       className='aspect-square flex items-center justify-center text-2xl cursor-pointer bg-transparent'
                     >
                       <span
-                        className='flex items-center justify-center rounded-full'
+                        className={`flex items-center justify-center rounded-full${gameWon ? ' strands-cell-celebrate' : ''}`}
                         style={{
                           width: '1.6em',
                           height: '1.6em',
                           backgroundColor: bg,
+                          animationDelay: gameWon ? `${(row + col) * 80}ms` : undefined,
                         }}
                       >
                         {letter}
