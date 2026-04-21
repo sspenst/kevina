@@ -362,10 +362,10 @@ export default function StrandsPage() {
       </Head>
 
       <div className='min-h-screen flex items-start justify-center bg-white text-black'>
-        <div className='max-w-[480px] w-full p-4 flex flex-col gap-6'>
+        <div className='max-w-[400px] w-full p-4 flex flex-col gap-6'>
           <Link
             href='/'
-            className='flex items-center gap-2 text-black/50 hover:text-black transition p-2 w-fit'
+            className='flex items-center gap-2 text-black/50 hover:text-black transition w-fit'
           >
             <ChevronLeft className='w-4 h-4' />
             Home
