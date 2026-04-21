@@ -320,6 +320,16 @@ export default function StrandsPage() {
     return map;
   }, [foundWords]);
 
+  const popCellKeys = useMemo(() => {
+    if (lastSubmission?.status !== 'correct' || foundWords.length === 0) {
+      return new Set<string>();
+    }
+
+    const last = foundWords[foundWords.length - 1];
+
+    return new Set(last.cells.map((c) => cellKey(c.row, c.col)));
+  }, [lastSubmission, foundWords]);
+
   const currentWord = selected.map((c) => GRID[c.row][c.col]).join('');
 
   const foundLines: { from: Point; to: Point; color: string }[] = [];
@@ -436,6 +446,13 @@ export default function StrandsPage() {
                   const foundColor = foundCellColors.get(key);
                   const isSel = selectedKeys.has(key);
                   const bg = foundColor ?? (isSel ? SELECTED_COLOR : 'transparent');
+                  const shouldPop = popCellKeys.has(key);
+                  const spanClass = [
+                    'flex items-center justify-center rounded-full',
+                    gameWon ? 'strands-cell-celebrate' : '',
+                    shouldPop ? 'strands-cell-pop' : '',
+                  ].filter(Boolean).join(' ');
+                  const spanKey = shouldPop && lastSubmission ? `${key}-${lastSubmission.tick}` : key;
 
                   return (
                     <button
@@ -445,7 +462,8 @@ export default function StrandsPage() {
                       className='aspect-square flex items-center justify-center text-2xl cursor-pointer bg-transparent'
                     >
                       <span
-                        className={`flex items-center justify-center rounded-full${gameWon ? ' strands-cell-celebrate' : ''}`}
+                        key={spanKey}
+                        className={spanClass}
                         style={{
                           width: '1.6em',
                           height: '1.6em',
