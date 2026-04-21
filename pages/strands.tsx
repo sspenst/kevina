@@ -62,6 +62,7 @@ interface FoundWord {
 
 export default function StrandsPage() {
   const [selected, setSelected] = useState<Cell[]>([]);
+  const [lastSubmittedWord, setLastSubmittedWord] = useState('');
   const [foundWords, setFoundWords] = useState<FoundWord[]>([]);
   const [positions, setPositions] = useState<(Point | null)[][]>(() =>
     Array.from({ length: ROWS }, () => Array(COLS).fill(null))
@@ -161,6 +162,10 @@ export default function StrandsPage() {
 
     if (word.length > 1 && WORDS.includes(word) && !alreadyFound) {
       setFoundWords([...foundWordsRef.current, { word, cells: path }]);
+    }
+
+    if (word.length > 0) {
+      setLastSubmittedWord(word);
     }
 
     setSelected([]);
@@ -321,19 +326,17 @@ export default function StrandsPage() {
       </Head>
 
       <div className='min-h-screen flex items-start justify-center bg-white text-black'>
-        <div className='max-w-[480px] w-full p-4 flex flex-col'>
+        <div className='max-w-[480px] w-full p-4 flex flex-col gap-6'>
           <Link
             href='/'
-            className='flex items-center gap-2 text-black/50 hover:text-black transition p-2 w-fit mb-2'
+            className='flex items-center gap-2 text-black/50 hover:text-black transition p-2 w-fit'
           >
             <ChevronLeft className='w-4 h-4' />
             Home
           </Link>
 
           <div className='flex items-center justify-center w-full'>
-            <div className='text-center mb-6 w-80' style={{
-
-            }}>
+            <div className='text-center w-80'>
               <p className='uppercase font-semibold text-xs bg-blue-200 rounded-t-md' style={{
                 backgroundColor: FOUND_COLOR,
               }}>Today&apos;s theme</p>
@@ -343,13 +346,15 @@ export default function StrandsPage() {
             </div>
           </div>
 
-          <div className='min-h-[56px] flex items-center justify-center mb-6'>
-            {selected.length !== 0 && (
+          <div className='min-h-[56px] flex items-center justify-center'>
+            {selected.length !== 0 ? (
               <span className='text-2xl font-semibold tracking-[0.3em] uppercase'>{currentWord}</span>
+            ) : lastSubmittedWord && (
+              <span className='text-2xl font-semibold tracking-[0.3em] uppercase'>{lastSubmittedWord}</span>
             )}
           </div>
 
-          <div className='relative mb-8 max-w-[360px] w-full mx-auto'>
+          <div className='relative max-w-[320px] w-full mx-auto'>
             {gridSize.width > 0 && (
               <svg
                 className='absolute inset-0 pointer-events-none z-0'
@@ -405,7 +410,7 @@ export default function StrandsPage() {
                       key={key}
                       data-cell={`${row},${col}`}
                       onPointerDown={handlePointerDown}
-                      className='aspect-square flex items-center justify-center text-2xl font-semibold cursor-pointer bg-transparent'
+                      className='aspect-square flex items-center justify-center text-2xl cursor-pointer bg-transparent'
                     >
                       <span
                         className='flex items-center justify-center rounded-full'
