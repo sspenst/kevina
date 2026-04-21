@@ -361,7 +361,7 @@ export default function StrandsPage() {
         <meta name='description' content='A special Strands game just for you!' />
       </Head>
 
-      <div className='min-h-screen flex items-start justify-center bg-white text-black'>
+      <div className='min-h-screen flex items-start justify-center bg-white text-black select-none'>
         <div className='max-w-[400px] w-full p-4 flex flex-col gap-6'>
           <Link
             href='/'
