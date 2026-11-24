@@ -13,7 +13,7 @@ export default function WeddingHeader() {
       <div className='flex items-center justify-between gap-6 px-4 py-3 rounded-full border border-white backdrop-blur-lg max-w-5xl w-full'>
         <div className='flex items-center gap-6 pl-2 truncate'>
           <Link className='hover:opacity-50 transition' href='/'>
-            <Image alt='Kevina & Spencer Spenst' height={426} src='/favicon.png' width={471} className='h-8 w-8 min-w-8' />
+            <Image alt='Kevina & Spencer Spenst' height={426} src='/favicon.svg' width={471} className='h-8 w-8 min-w-8' />
           </Link>
           <Link aria-label='Home' href='/wedding' className='flex items-center gap-6 font-medium hover:opacity-50 transition truncate max-w-full'>
             <div className='flex gap-2'>
